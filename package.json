@@ -1,0 +1,14 @@
+{
+  "name": "csc437-rezmous",
+  "version": "1.0.0",
+  "description": "CSC 437-01: Dynamic Web Development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ]
+}
