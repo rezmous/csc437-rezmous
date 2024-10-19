@@ -117,7 +117,7 @@ nav a:hover {
   margin: 0 auto 10px auto; 
   height: 80px; 
   width: 80px; 
-  fill: #9cdcfe
+  /* fill: #9cdcfe; */
 }
 
 .manufacturer-cards {
@@ -294,6 +294,13 @@ dd {
 
 .designer-section ul li a:hover {
   text-decoration: underline;
+}
+
+svg.icon {
+  display: inline;
+  height: 2em;
+  width: 2em;
+  vertical-align: top;
 }
 
 @media (max-width: 768px) {
