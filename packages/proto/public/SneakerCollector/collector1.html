@@ -1,32 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
     <link rel="stylesheet" href="/styles/page.css" />
+    <title>Sneaker Collector</title>
   </head>
-  <article>
+  <body>
     <header>
-      <h1>Sneaker Collector</h1>
+      <h1><a href="#">Sole Collection</a></h1>
     </header>
-    <body>
-      <h2>Current Sneaker Collection</h2>
-      <section class="sneak1info">
-        <dl>
-          <dt>Value of Collection</dt>
-          <dd>$500</dd>
-          <dt>Quantity</dt>
-          <dd>5 Pairs</dd>
-        </dl>
+
+    <main>
+      <!-- Card for Collection Stats -->
+      <section class="card">
+        <h2>Sneaker Collector's Current Collection</h2>
+        <div class="collection-stats">
+          <div class="stat">
+            <p class="value">$500</p>
+            <p class="label">Value of Collection</p>
+          </div>
+          <div class="stat">
+            <p class="value">5 Pairs</p>
+            <p class="label">Quantity</p>
+          </div>
+        </div>
       </section>
-      <section class="collectioninfo">
-        <h3>Manufacturers in Collection</h3>
-        <ul>
-          <li><a href="/Manufacturer/nike.html">Nike</a></li>
-        </ul>
-        <h3>Shoe Models in Collection</h3>
-        <ul>
-          <li><a href="/ShoeModel/nikePresto.html">Nike Air Presto</a></li>
-        </ul>
+
+      <!-- Combined Card for Manufacturers and Shoe Models -->
+      <section class="card combined-card">
+        <div class="collection-info">
+          <h3>Manufacturers</h3>
+          <ul>
+            <li><a href="/Manufacturer/nike.html">Nike</a></li>
+          </ul>
+        </div>
+        
+        <div class="collection-info">
+          <h3>Shoe Models</h3>
+          <ul>
+            <li><a href="/ShoeModel/nikePresto.html">Nike Air Presto</a></li>
+          </ul>
+        </div>
       </section>
-    </body>
-  </article>
+    </main>
+  </body>
 </html>

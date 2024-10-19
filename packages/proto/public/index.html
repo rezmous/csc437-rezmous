@@ -8,45 +8,57 @@
       href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles/page.css" />
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/page.css" />
+    <title>Sole Collection</title>
   </head>
-  <article>
+  <body>
     <header>
-      <h1>Shoe Collecting</h1>
+      <h1><a href="#">Sole Collection</a></h1>
+      <!-- Link to Home -->
+      <nav>
+        <a href="SneakerCollector/collector1.html">Your Collection</a>
+      </nav>
     </header>
-    <body>
-      <section class="marketValue">
-        <h2>Market Value</h2>
-        <details>
-          <summary>What is Market Value?</summary>
-          The cost of a Shoe based on several factors, such as Manufacturer,
-          Shoe Model, Scarcity, and Designer.
-        </details>
-        <h3>Manufacturer</h3>
-        <ul>
-          <li><a href="Manufacturer/nike.html">Nike</a></li>
-          <li><a href="Manufacturer/jordan.html">Jordan Brand</a></li>
-          <li><a href="Manufacturer/adidas.html">Adidas</a></li>
-        </ul>
-        <h3>Sneaker Collector</h3>
-        <details>
-          <summary>Who is a Sneaker Collector?</summary>
-          A Sneaker Collector is an individual who collects shoes based on
-          various factors but primarily based on Market Value. The indiviudals
-          below opted to share their collection and recent pick ups.
-        </details>
-        <ul>
-          <li>
-            <a href="SneakerCollector/collector1.html">Sneaker Collector 1</a>
-          </li>
-        </ul>
+
+    <main>
+      <!-- Manufacturer Cards -->
+      <section class="manufacturer-cards">
+        <div class="card">
+          <h2>Nike</h2>
+          <a href="Manufacturer/nike.html">Explore Nike</a>
+        </div>
+        <div class="card">
+          <h2>Jordan Brand</h2>
+          <a href="Manufacturer/jordan.html">Explore Jordan</a>
+        </div>
+        <div class="card">
+          <h2>Adidas</h2>
+          <a href="Manufacturer/adidas.html">Explore Adidas</a>
+        </div>
       </section>
-    </body>
-  </article>
+
+      <!-- Questions and Answers Cards -->
+      <section class="card">
+        <h2>What is Market Value?</h2>
+        <p>
+          The cost of a shoe based on several factors, such as Manufacturer,
+          Shoe Model, Scarcity, and Designer.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Who is a Sneaker Collector?</h2>
+        <p>
+          A Sneaker Collector is an individual who collects shoes based on
+          various factors but primarily based on Market Value. These collectors
+          often share their collection and recent pickups.
+        </p>
+      </section>
+    </main>
+  </body>
 </html>
