@@ -114,10 +114,10 @@ nav a:hover {
 
 .manufacturer-cards .card .brand-logo {
   display: block;
-  margin: 0 auto 10px auto; /* Center the logo and add spacing below */
-  height: 80px; /* Set a fixed height */
-  width: 80px; /* Set a fixed width for uniformity */
-  fill: #007acc;
+  margin: 0 auto 10px auto; 
+  height: 80px; 
+  width: 80px; 
+  fill: #9cdcfe
 }
 
 .manufacturer-cards {
