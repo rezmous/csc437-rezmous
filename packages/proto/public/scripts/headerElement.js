@@ -23,22 +23,9 @@ export class HeaderElement extends HTMLElement {
         </nav>
       </header>
       <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const isDarkMode = localStorage.getItem("darkMode") === "true";
-
-          if (isDarkMode) {
-            document.body.classList.add("dark-mode");
-          }
-
-          const headerElement = document.querySelector("header-element");
-          if (headerElement) {
-            const darkModeToggle =
-              headerElement.shadowRoot.querySelector("#darkModeToggle");
-            if (darkModeToggle) {
-              darkModeToggle.checked = isDarkMode;
-            }
-          }
-        });
+        if (localStorage.getItem("darkMode") === "true") {
+          document.body.classList.add("dark-mode");
+        }
 
         document.body.addEventListener("darkmode:toggle", (event) => {
           const isDarkMode = event.detail.isDarkMode;
