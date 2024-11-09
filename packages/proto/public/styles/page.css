@@ -48,14 +48,14 @@
 }
 
 body {
-  color: var(--color-body);
-  background-color: #1e1e1e;
+  color: var(--color-text);
+  background-color: var(--color-background-page);
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
 
 header {
-  background-color: #007acc;
+  background-color: var(--color-background-header);
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -74,13 +74,13 @@ header h1 {
 
 header h1 a {
   text-decoration: none;
-  color: #d4d4d4;
+  color: var(--color-text-control);
 }
 
 header .icon {
   height: 2.5rem;
   width: 2.5rem;
-  fill: #d4d4d4;
+  fill: var(--color-text-control);
 }
 
 .left-logo {
@@ -102,21 +102,21 @@ nav a {
   text-decoration: none;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
-  color: #d4d4d4;
-  background-color: #007acc;
+  color: var(--color-text-control);
+  background-color: var(--color-accent);
   padding: 10px 20px;
   border-radius: 5px;
 }
 
 nav a:hover {
-  background-color: #005f9e;
+  background-color: var(--color-background-header);
 }
 
 .manufacturer-cards .card .brand-logo {
   display: block;
-  margin: 0 auto 10px auto; 
-  height: 80px; 
-  width: 80px; 
+  margin: 0 auto 10px auto;
+  height: 80px;
+  width: 80px;
   fill: #9cdcfe;
 }
 
@@ -160,6 +160,54 @@ nav a:hover {
   text-decoration: underline;
 }
 
+.manufacturer-cards .card .brand-logo {
+  display: block;
+  margin: 0 auto 10px auto;
+  height: 80px;
+  width: 80px;
+  fill: var(--color-link); 
+}
+
+.manufacturer-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.manufacturer-cards .card {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid var(--color-accent);
+  border-radius: 10px;
+  background-color: var(--color-background-card);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  text-align: center;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.manufacturer-cards .card h2 {
+  font-family: "PT Serif", serif;
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  color: var(--color-text);
+}
+
+.manufacturer-cards .card a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: var(--color-link);
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+.manufacturer-cards .card a:hover {
+  text-decoration: underline;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -171,39 +219,40 @@ main {
 .card {
   width: 60%;
   padding: 20px;
-  border: 1px solid #007acc;
+  border: 1px solid var(--color-accent);
   border-radius: 10px;
-  background-color: #252526;
+  background-color: var(--color-background-card);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+
 .card h2 {
   font-family: "PT Serif", serif;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #d4d4d4;
+  color: var(--color-text);
 }
 
 .card p {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  color: #9cdcfe;
+  color: var(--color-link);
 }
 
 dl {
   margin: 20px 0;
-  color: #d4d4d4;
+  color: var(--color-text);
 }
 
 dt {
   font-weight: 700;
   margin-bottom: 5px;
-  color: #9cdcfe;
+  color: var(--color-link);
 }
 
 dd {
   margin-left: 20px;
-  color: #d4d4d4;
+  color: var(--color-text);
 }
 
 .collection-stats {
@@ -221,13 +270,13 @@ dd {
 .stat .value {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #9cdcfe;
+  color: var(--color-link);
   margin: 0;
 }
 
 .stat .label {
   font-size: 1.1rem;
-  color: #d4d4d4;
+  color: var(--color-text);
   margin-top: 10px;
 }
 
@@ -244,7 +293,7 @@ dd {
 
 .collection-info h3 {
   font-size: 1.5rem;
-  color: #9cdcfe;
+  color: var(--color-link);
 }
 
 .collection-info ul {
@@ -257,7 +306,7 @@ dd {
 }
 
 .collection-info ul li a {
-  color: #007acc;
+  color: var(--color-accent);
   text-decoration: none;
 }
 
@@ -268,14 +317,14 @@ dd {
 .manufacturer-title {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #9cdcfe;
+  color: var(--color-link);
   text-align: center;
   margin: 20px 0;
 }
 
 .designer-section h3 {
   font-size: 1.5rem;
-  color: #9cdcfe;
+  color: var(--color-link);
 }
 
 .designer-section ul {
@@ -288,7 +337,7 @@ dd {
 }
 
 .designer-section ul li a {
-  color: #007acc;
+  color: var(--color-accent);
   text-decoration: none;
 }
 

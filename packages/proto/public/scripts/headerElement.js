@@ -5,6 +5,12 @@ export class HeaderElement extends HTMLElement {
   static template = html`
     <template>
       <header>
+        <label class="dark-mode-switch">
+          <svg class="icon-darkmode">
+            <use href="/icons/logo.svg#icon-darkmode"></use>
+          </svg>
+          <input type="checkbox" id="darkModeToggle" autocomplete="off" />
+        </label>
         <svg class="icon left-logo">
           <use href="/icons/logo.svg#icon-solelogo"></use>
         </svg>
@@ -16,12 +22,42 @@ export class HeaderElement extends HTMLElement {
           <a href="SneakerCollector/collector1.html">Your Collection</a>
         </nav>
       </header>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const isDarkMode = localStorage.getItem("darkMode") === "true";
+
+          if (isDarkMode) {
+            document.body.classList.add("dark-mode");
+          }
+
+          const headerElement = document.querySelector("header-element");
+          if (headerElement) {
+            const darkModeToggle =
+              headerElement.shadowRoot.querySelector("#darkModeToggle");
+            if (darkModeToggle) {
+              darkModeToggle.checked = isDarkMode;
+            }
+          }
+        });
+
+        document.body.addEventListener("darkmode:toggle", (event) => {
+          const isDarkMode = event.detail.isDarkMode;
+
+          if (isDarkMode) {
+            document.body.classList.add("dark-mode");
+          } else {
+            document.body.classList.remove("dark-mode");
+          }
+
+          localStorage.setItem("darkMode", isDarkMode);
+        });
+      </script>
     </template>
   `;
 
   static styles = css`
     header {
-      background-color: #007acc;
+      background-color: var(--color-background-header);
       padding: 20px;
       display: flex;
       justify-content: center;
@@ -40,13 +76,28 @@ export class HeaderElement extends HTMLElement {
 
     header h1 a {
       text-decoration: none;
-      color: #d4d4d4;
+      color: var(--color-text-control);
     }
 
     header .icon {
       height: 2.5rem;
       width: 2.5rem;
-      fill: #d4d4d4;
+      fill: var(--color-text-control);
+    }
+
+    .dark-mode-switch {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: absolute;
+      left: 20px;
+    }
+
+    .icon-darkmode {
+      height: 1.5rem;
+      width: 1.5rem;
+      fill: var(--color-text-control);
+      cursor: pointer;
     }
 
     .left-logo {
@@ -68,14 +119,14 @@ export class HeaderElement extends HTMLElement {
       text-decoration: none;
       font-family: "Montserrat", sans-serif;
       font-weight: 500;
-      color: #d4d4d4;
-      background-color: #007acc;
+      color: var(--color-text-control);
+      background-color: var(--color-background-header);
       padding: 10px 20px;
       border-radius: 5px;
     }
 
     nav a:hover {
-      background-color: #005f9e;
+      background-color: var(--color-background-page);
     }
   `;
 
@@ -84,5 +135,28 @@ export class HeaderElement extends HTMLElement {
     shadow(this)
       .template(HeaderElement.template)
       .styles(reset.styles, HeaderElement.styles);
+  }
+
+  connectedCallback() {
+    const label = this.shadowRoot.querySelector(".dark-mode-switch");
+    const toggle = this.shadowRoot.querySelector("#darkModeToggle");
+
+    const isDarkMode = localStorage.getItem("darkMode") === "true";
+    if (toggle) {
+      toggle.checked = isDarkMode;
+    }
+
+    if (label) {
+      label.addEventListener("change", (event) => {
+        event.stopPropagation();
+        const isDarkMode = event.target.checked;
+        this.dispatchEvent(
+          new CustomEvent("darkmode:toggle", {
+            bubbles: true,
+            detail: { isDarkMode },
+          })
+        );
+      });
+    }
   }
 }
