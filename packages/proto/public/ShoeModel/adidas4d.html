@@ -1,28 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
+    <title>Adidas 4D FWD</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+        }
+      }
+    </script>
+    <script type="module">
+      import { define } from "@calpoly/mustang";
+      import { ShoeCardElement } from "/scripts/shoeCardElement.js";
+      import { HeaderElement } from "/scripts/headerElement.js";
+
+      define({
+        "header-component": HeaderElement,
+        "shoe-card": ShoeCardElement,
+      });
+    </script>
   </head>
-  <article>
-    <header>
-      <h1>Shoe Model</h1>
-    </header>
-    <body>
-      <h2>Adidas 4D FWD</h2>
-      <section class="4Dinfo">
-        <dl>
-          <dt>Retail Value</dt>
-          <dd>$200</dd>
-          <dt>Scarcity</dt>
-          <dd>General Release</dd>
-        </dl>
-      </section>
-      <section class="adidas4D">
-        <h3>Designed by</h3>
-        <ul>
-          <li><a href="/Designer/arsham.html">Daniel Arsham</a></li>
-        </ul>
-      </section>
-    </body>
-  </article>
+  <body>
+    <header-component></header-component>
+    <shoe-card>
+      <span slot="name">Adidas 4D FWD</span>
+      <span slot="retail-value">$200</span>
+      <span slot="scarcity">General Release</span>
+      <div slot="designer">
+        <a href="/Designer/arsham.html">Daniel Arsham</a>
+      </div>
+    </shoe-card>
+  </body>
 </html>
