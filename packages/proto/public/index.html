@@ -15,20 +15,24 @@
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
     <title>Sole Collection</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+        }
+      }
+    </script>
+    <script type="module">
+      import { define } from "@calpoly/mustang";
+      import { HeaderElement } from "/scripts/headerElement.js";
+
+      define({
+        "header-component": HeaderElement,
+      });
+    </script>
   </head>
   <body>
-    <header>
-      <svg class="icon left-logo">
-        <use href="./icons/logo.svg#icon-solelogo" />
-      </svg>
-      <h1><a href="#">Sole Collection</a></h1>
-      <svg class="icon right-logo">
-        <use href="./icons/logo.svg#icon-solelogo" />
-      </svg>
-      <nav>
-        <a href="SneakerCollector/collector1.html">Your Collection</a>
-      </nav>
-    </header>
+    <header-component></header-component>
     <main>
       <section class="manufacturer-cards">
         <div class="card">
