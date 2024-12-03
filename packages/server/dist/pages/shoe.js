@@ -72,30 +72,10 @@ class ShoePage {
     });
   }
   renderBody() {
-    const { price, inventory, designer, categories, featuredImage, colorway } = this.data;
-    const categoryList = categories ? import_server.html`<ul class="categories">
-          ${categories.map((category) => import_server.html`<li>${category}</li>`)}
-        </ul>` : "";
-    const regionList = inventory.regions ? import_server.html`<ul class="regions">
-          ${inventory.regions.map((region) => import_server.html`<li>${region}</li>`)}
-        </ul>` : "";
+    const { sku } = this.data;
     return import_server.html`
-      <section class="shoe-details">
-        ${featuredImage ? import_server.html`<img src="${featuredImage}" alt="${this.data.name}" />` : ""}
-        <p>Colorway: ${colorway}</p>
-        <p>Price: $${price.originalPrice}</p>
-        ${price.marketPrice ? import_server.html`<p>Market Price: $${price.marketPrice}</p>` : ""}
-        <p>Currency: ${price.currency.symbol}</p>
-        <p>Production Number: ${inventory.productionNumber}</p>
-        <p>Pairs Sold: ${inventory.pairsSold}</p>
-        ${regionList}
-        ${inventory.isLimitedEdition ? import_server.html`<p><strong>Limited Edition</strong></p>` : ""}
-        ${designer ? import_server.html`<p>Designer: ${designer.name}</p>
-              ${designer.collaborators ? import_server.html`<p>
-                    Collaborators: ${designer.collaborators.join(", ")}
-                  </p>` : ""}` : ""}
-        ${categoryList}
-      </section>
+      <shoe-card src="/api/shoes/${sku}">
+      </shoe-card>
     `;
   }
 }

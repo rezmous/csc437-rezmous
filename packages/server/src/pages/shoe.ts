@@ -44,48 +44,11 @@ export class ShoePage {
   }
 
   renderBody() {
-    const { price, inventory, designer, categories, featuredImage, colorway } =
-      this.data;
-
-    const categoryList = categories
-      ? html`<ul class="categories">
-          ${categories.map((category) => html`<li>${category}</li>`)}
-        </ul>`
-      : "";
-
-    const regionList = inventory.regions
-      ? html`<ul class="regions">
-          ${inventory.regions.map((region) => html`<li>${region}</li>`)}
-        </ul>`
-      : "";
+    const { sku } = this.data;
 
     return html`
-      <section class="shoe-details">
-        ${featuredImage
-          ? html`<img src="${featuredImage}" alt="${this.data.name}" />`
-          : ""}
-        <p>Colorway: ${colorway}</p>
-        <p>Price: $${price.originalPrice}</p>
-        ${price.marketPrice
-          ? html`<p>Market Price: $${price.marketPrice}</p>`
-          : ""}
-        <p>Currency: ${price.currency.symbol}</p>
-        <p>Production Number: ${inventory.productionNumber}</p>
-        <p>Pairs Sold: ${inventory.pairsSold}</p>
-        ${regionList}
-        ${inventory.isLimitedEdition
-          ? html`<p><strong>Limited Edition</strong></p>`
-          : ""}
-        ${designer
-          ? html`<p>Designer: ${designer.name}</p>
-              ${designer.collaborators
-                ? html`<p>
-                    Collaborators: ${designer.collaborators.join(", ")}
-                  </p>`
-                : ""}`
-          : ""}
-        ${categoryList}
-      </section>
+      <shoe-card src="/api/shoes/${sku}">
+      </shoe-card>
     `;
   }
 }
