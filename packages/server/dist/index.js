@@ -23,7 +23,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_express = __toESM(require("express"));
 var import_shoe = require("./pages/shoe");
-var import_shoe_svc = require("./services/shoe-svc");
+var import_shoe_svc = __toESM(require("./services/shoe-svc"));
+var import_mongo = require("./services/mongo");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
@@ -34,9 +35,17 @@ app.get("/hello", (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-app.get("/shoes/:shoeId", (req, res) => {
-  const { shoeId } = req.params;
-  const data = (0, import_shoe_svc.getShoe)(shoeId);
-  const page = new import_shoe.ShoePage(data);
-  res.set("Content-Type", "text/html").send(page.render());
+app.get("/shoes/:sku", (req, res) => {
+  const { sku } = req.params;
+  import_shoe_svc.default.getBySKU(sku).then((shoe) => {
+    if (!shoe) {
+      res.status(404).send(`Shoe with SKU "${sku}" not found`);
+      return;
+    }
+    res.set("Content-Type", "text/html").send(new import_shoe.ShoePage(shoe).render());
+  }).catch((err) => {
+    console.error(err.message);
+    res.status(500).send("Internal Server Error");
+  });
 });
+(0, import_mongo.connect)("sole_collection");

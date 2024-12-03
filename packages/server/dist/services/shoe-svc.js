@@ -18,42 +18,55 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var shoe_svc_exports = {};
 __export(shoe_svc_exports, {
-  getShoe: () => getShoe
+  ShoeModel: () => ShoeModel,
+  default: () => shoe_svc_default,
+  getBySKU: () => getBySKU,
+  index: () => index
 });
 module.exports = __toCommonJS(shoe_svc_exports);
-const shoes = {
-  yeezyBoost350: {
-    sku: 67890,
-    name: "Yeezy Boost 350 V2",
-    brand: "Adidas",
-    colorway: "Zebra",
-    releaseDate: /* @__PURE__ */ new Date("2023-12-01"),
-    featuredImage: "/images/shoes/yeezy-boost-350.jpg",
+var import_mongoose = require("mongoose");
+const ShoeSchema = new import_mongoose.Schema(
+  {
+    sku: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    brand: { type: String, required: true },
+    colorway: String,
+    releaseDate: Date,
+    featuredImage: String,
     price: {
-      originalPrice: 220,
-      marketPrice: 350,
+      originalPrice: Number,
+      marketPrice: Number,
       currency: {
-        amount: 1,
-        symbol: "$"
+        amount: Number,
+        symbol: String
       }
     },
     inventory: {
-      productionNumber: 1e4,
-      pairsSold: 8e3,
-      isLimitedEdition: true,
-      regions: ["US", "EU", "CN"]
+      productionNumber: Number,
+      pairsSold: Number,
+      isLimitedEdition: Boolean,
+      regions: [String]
     },
-    categories: ["Lifestyle", "Sneakers"],
+    categories: [String],
     designer: {
-      name: "Ye",
-      collaborators: ["Adidas"]
+      name: String,
+      collaborators: [String]
     }
-  }
-};
-function getShoe(_) {
-  return shoes["yeezyBoost350"];
+  },
+  { collection: "shoes" }
+);
+const ShoeModel = (0, import_mongoose.model)("Shoe", ShoeSchema);
+function getBySKU(sku) {
+  console.log(`Querying for SKU: ${sku}`);
+  return ShoeModel.findOne({ sku }).exec();
 }
+function index() {
+  return ShoeModel.find().exec();
+}
+var shoe_svc_default = { getBySKU, index };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  getShoe
+  ShoeModel,
+  getBySKU,
+  index
 });

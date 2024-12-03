@@ -1,35 +1,46 @@
-import { BrandType, DesignerType, Shoe } from "../models/shoe";
+import { Schema, model } from "mongoose";
+import { Shoe } from "../models/shoe";
 
-const shoes = {
-  yeezyBoost350: {
-    sku: 67890,
-    name: "Yeezy Boost 350 V2",
-    brand: "Adidas" as BrandType,
-    colorway: "Zebra",
-    releaseDate: new Date("2023-12-01"),
-    featuredImage: "/images/shoes/yeezy-boost-350.jpg",
+const ShoeSchema = new Schema<Shoe>(
+  {
+    sku: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    brand: { type: String, required: true },
+    colorway: String,
+    releaseDate: Date,
+    featuredImage: String,
     price: {
-      originalPrice: 220,
-      marketPrice: 350,
+      originalPrice: Number,
+      marketPrice: Number,
       currency: {
-        amount: 1,
-        symbol: "$",
+        amount: Number,
+        symbol: String,
       },
     },
     inventory: {
-      productionNumber: 10000,
-      pairsSold: 8000,
-      isLimitedEdition: true,
-      regions: ["US", "EU", "CN"],
+      productionNumber: Number,
+      pairsSold: Number,
+      isLimitedEdition: Boolean,
+      regions: [String],
     },
-    categories: ["Lifestyle", "Sneakers"],
+    categories: [String],
     designer: {
-      name: "Ye" as DesignerType,
-      collaborators: ["Adidas"],
+      name: String,
+      collaborators: [String],
     },
   },
-};
+  { collection: "shoes" } 
+);
 
-export function getShoe(_: string) {
-  return shoes["yeezyBoost350"];
+export const ShoeModel = model<Shoe>("Shoe", ShoeSchema);
+
+export function getBySKU(sku: string): Promise<Shoe | null> {
+  console.log(`Querying for SKU: ${sku}`);
+  return ShoeModel.findOne({ sku }).exec();
 }
+
+export function index(): Promise<Shoe[]> {
+  return ShoeModel.find().exec();
+}
+
+export default { getBySKU, index };

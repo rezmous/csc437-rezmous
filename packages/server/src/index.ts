@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
-import { ShoePage } from "./pages/shoe"; 
-import { getShoe } from "./services/shoe-svc";
+import { ShoePage } from "./pages/shoe";
+import Shoes from "./services/shoe-svc";
+import { connect } from "./services/mongo";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,10 +17,21 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-app.get("/shoes/:shoeId", (req: Request, res: Response) => {
-  const { shoeId } = req.params;
-  const data = getShoe(shoeId);
-  const page = new ShoePage(data);
+app.get("/shoes/:sku", (req: Request, res: Response) => {
+  const { sku } = req.params;
 
-  res.set("Content-Type", "text/html").send(page.render());
+  Shoes.getBySKU(sku)
+    .then((shoe) => {
+      if (!shoe) {
+        res.status(404).send(`Shoe with SKU "${sku}" not found`);
+        return;
+      }
+      res.set("Content-Type", "text/html").send(new ShoePage(shoe).render());
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send("Internal Server Error");
+    });
 });
+
+connect("sole_collection");

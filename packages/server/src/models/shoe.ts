@@ -1,5 +1,5 @@
 export interface Shoe {
-  sku: number;
+  sku: string;
   name: string;
   brand: BrandType;
   colorway: string;
