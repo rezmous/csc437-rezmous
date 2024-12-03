@@ -25,10 +25,13 @@ var import_express = __toESM(require("express"));
 var import_shoe = require("./pages/shoe");
 var import_shoe_svc = __toESM(require("./services/shoe-svc"));
 var import_mongo = require("./services/mongo");
+var import_shoes = __toESM(require("./routes/shoes"));
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
+app.use(import_express.default.json());
+app.use("/api/shoes", import_shoes.default);
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
 });
@@ -37,7 +40,7 @@ app.listen(port, () => {
 });
 app.get("/shoes/:sku", (req, res) => {
   const { sku } = req.params;
-  import_shoe_svc.default.getBySKU(sku).then((shoe) => {
+  import_shoe_svc.default.get(sku).then((shoe) => {
     if (!shoe) {
       res.status(404).send(`Shoe with SKU "${sku}" not found`);
       return;

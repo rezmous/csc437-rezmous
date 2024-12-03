@@ -19,9 +19,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var shoe_svc_exports = {};
 __export(shoe_svc_exports, {
   ShoeModel: () => ShoeModel,
-  default: () => shoe_svc_default,
-  getBySKU: () => getBySKU,
-  index: () => index
+  default: () => shoe_svc_default
 });
 module.exports = __toCommonJS(shoe_svc_exports);
 var import_mongoose = require("mongoose");
@@ -56,17 +54,34 @@ const ShoeSchema = new import_mongoose.Schema(
   { collection: "shoes" }
 );
 const ShoeModel = (0, import_mongoose.model)("Shoe", ShoeSchema);
-function getBySKU(sku) {
-  console.log(`Querying for SKU: ${sku}`);
-  return ShoeModel.findOne({ sku }).exec();
-}
 function index() {
-  return ShoeModel.find().exec();
+  return ShoeModel.find();
 }
-var shoe_svc_default = { getBySKU, index };
+function get(sku) {
+  return ShoeModel.findOne({ sku }).then((shoe) => {
+    if (!shoe) throw `Shoe with SKU ${sku} Not Found`;
+    return shoe;
+  });
+}
+function create(shoe) {
+  const newShoe = new ShoeModel(shoe);
+  return newShoe.save();
+}
+function update(sku, shoe) {
+  return ShoeModel.findOneAndUpdate({ sku }, shoe, { new: true }).then(
+    (updatedShoe) => {
+      if (!updatedShoe) throw `Shoe with SKU ${sku} Not Found`;
+      return updatedShoe;
+    }
+  );
+}
+function remove(sku) {
+  return ShoeModel.findOneAndDelete({ sku }).then((deletedShoe) => {
+    if (!deletedShoe) throw `Shoe with SKU ${sku} Not Found`;
+  });
+}
+var shoe_svc_default = { index, get, create, update, remove };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  ShoeModel,
-  getBySKU,
-  index
+  ShoeModel
 });

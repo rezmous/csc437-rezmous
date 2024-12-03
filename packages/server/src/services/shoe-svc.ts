@@ -34,13 +34,36 @@ const ShoeSchema = new Schema<Shoe>(
 
 export const ShoeModel = model<Shoe>("Shoe", ShoeSchema);
 
-export function getBySKU(sku: string): Promise<Shoe | null> {
-  console.log(`Querying for SKU: ${sku}`);
-  return ShoeModel.findOne({ sku }).exec();
+function index(): Promise<Shoe[]> {
+  return ShoeModel.find();
 }
 
-export function index(): Promise<Shoe[]> {
-  return ShoeModel.find().exec();
+function get(sku: string): Promise<Shoe> {
+  return ShoeModel.findOne({ sku })
+    .then((shoe: any) => {
+      if (!shoe) throw `Shoe with SKU ${sku} Not Found`;
+      return shoe;
+    });
 }
 
-export default { getBySKU, index };
+function create(shoe: Shoe): Promise<Shoe> {
+  const newShoe = new ShoeModel(shoe);
+  return newShoe.save();
+}
+
+function update(sku: string, shoe: Shoe): Promise<Shoe> {
+  return ShoeModel.findOneAndUpdate({ sku }, shoe, { new: true }).then(
+    (updatedShoe: any) => {
+      if (!updatedShoe) throw `Shoe with SKU ${sku} Not Found`;
+      return updatedShoe;
+    }
+  );
+}
+
+function remove(sku: string): Promise<void> {
+  return ShoeModel.findOneAndDelete({ sku }).then((deletedShoe: any) => {
+    if (!deletedShoe) throw `Shoe with SKU ${sku} Not Found`;
+  });
+}
+
+export default { index, get, create, update, remove };
