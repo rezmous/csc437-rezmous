@@ -10,8 +10,6 @@ const defaults = {
       define({
         "header-component": HeaderElement
       });
-  
-      HeaderElement.initializeOnce();
       `,
   ],
   googleFontURL:

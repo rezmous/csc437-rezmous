@@ -46,7 +46,6 @@ class ShoePage {
           <main class="shoe-page">${this.renderBody()}</main>
         </body>
       `,
-      stylesheets: ["/styles/shoe.css"],
       styles: [
         import_server.css`
           main.shoe-page {

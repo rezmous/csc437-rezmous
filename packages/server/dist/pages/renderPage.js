@@ -32,8 +32,6 @@ const defaults = {
       define({
         "header-component": HeaderElement
       });
-  
-      HeaderElement.initializeOnce();
       `
   ],
   googleFontURL: "https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap",

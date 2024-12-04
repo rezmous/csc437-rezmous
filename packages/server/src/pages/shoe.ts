@@ -17,7 +17,6 @@ export class ShoePage {
           <main class="shoe-page">${this.renderBody()}</main>
         </body>
       `,
-      stylesheets: ["/styles/shoe.css"],
       styles: [
         css`
           main.shoe-page {

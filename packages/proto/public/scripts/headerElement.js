@@ -14,7 +14,7 @@ export class HeaderElement extends HTMLElement {
         <svg class="icon left-logo">
           <use href="/icons/logo.svg#icon-solelogo"></use>
         </svg>
-        <h1><a href="#">Sole Collection</a></h1>
+        <h1><a href="/">Sole Collection</a></h1>
         <svg class="icon right-logo">
           <use href="/icons/logo.svg#icon-solelogo"></use>
         </svg>

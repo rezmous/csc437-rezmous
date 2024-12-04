@@ -2,18 +2,60 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
     <title>Manufacturer - Jordan Brand</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+        }
+      }
+    </script>
+    <script type="module">
+      import { define } from "@calpoly/mustang";
+      import { HeaderElement } from "/scripts/headerElement.js";
+      import { ShoeCardElement } from "/scripts/shoeCardElement.js";
+
+      define({
+        "header-component": HeaderElement,
+        "shoe-card": ShoeCardElement,
+      });
+    </script>
   </head>
   <body>
-    <header>
-      <h1><a href="/index.html">Sole Collection</a></h1>
-    </header>
+    <header-component></header-component>
     <main>
-      <h2 class="manufacturer-title">Jordan Brand</h2>
+      <section class="manufacturer-overview">
+        <div class="card">
+          <h2>Who is Jordan Brand?</h2>
+          <figure>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/3/37/Jumpman_logo.svg"
+              alt="Jordan Brand Logo"
+            />
+          </figure>
+          <p>
+            Jordan Brand, a subsidiary of Nike, is an American sportswear brand
+            inspired by NBA Hall of Famer Michael Jordan. It is known for its
+            signature Air Jordan sneakers and its influence on basketball
+            culture and fashion.
+          </p>
+        </div>
+      </section>
       <section class="card">
         <div class="designer-section">
-          <h3>Designer</h3>
+          <h3>Designers</h3>
           <ul>
             <li><a href="/Designer/tinker.html">Tinker Hatfield</a></li>
             <li><a href="/Designer/travis.html">Travis Scott</a></li>

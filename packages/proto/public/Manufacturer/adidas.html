@@ -2,18 +2,59 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
     <title>Manufacturer - Adidas</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+        }
+      }
+    </script>
+    <script type="module">
+      import { define } from "@calpoly/mustang";
+      import { HeaderElement } from "/scripts/headerElement.js";
+
+      define({
+        "header-component": HeaderElement,
+      });
+    </script>
   </head>
   <body>
-    <header>
-      <h1><a href="/index.html">Sole Collection</a></h1>
-    </header>
+    <header-component></header-component>
     <main>
-      <h2 class="manufacturer-title">Adidas</h2>
+      <section class="manufacturer-overview">
+        <div class="card">
+          <h2>Who is Adidas?</h2>
+          <figure>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg"
+              alt="Adidas Logo"
+            />
+          </figure>
+          <p>
+            Adidas is a German multinational corporation that designs and
+            manufactures shoes, clothing, and accessories. Known for its iconic
+            three stripes, Adidas is a leader in the global sportswear industry,
+            creating innovative designs and partnering with world-renowned
+            designers and athletes.
+          </p>
+        </div>
+      </section>
       <section class="card">
         <div class="designer-section">
-          <h3>Designer</h3>
+          <h3>Designers</h3>
           <ul>
             <li><a href="/Designer/arsham.html">Daniel Arsham</a></li>
             <li><a href="/Designer/lorenzo.html">Jerry Lorenzo</a></li>
