@@ -28,6 +28,7 @@ var import_mongo = require("./services/mongo");
 var import_shoes = __toESM(require("./routes/shoes"));
 var import_auth = __toESM(require("./routes/auth"));
 var import_auth2 = require("./pages/auth");
+var import_registerAuth = require("./pages/registerAuth");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
@@ -37,6 +38,10 @@ app.use("/auth", import_auth.default);
 app.use("/api/shoes", import_auth.authenticateUser, import_shoes.default);
 app.get("/login", (req, res) => {
   const page = new import_auth2.LoginPage();
+  res.set("Content-Type", "text/html").send(page.render());
+});
+app.get("/register", (req, res) => {
+  const page = new import_registerAuth.RegisterPage();
   res.set("Content-Type", "text/html").send(page.render());
 });
 app.get("/hello", (req, res) => {

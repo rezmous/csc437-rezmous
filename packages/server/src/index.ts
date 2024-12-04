@@ -5,6 +5,7 @@ import { connect } from "./services/mongo";
 import shoes from "./routes/shoes";
 import auth, { authenticateUser } from "./routes/auth";
 import { LoginPage } from "./pages/auth";
+import { RegisterPage } from "./pages/registerAuth";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,6 +19,11 @@ app.use("/api/shoes", authenticateUser, shoes);
 
 app.get("/login", (req: Request, res: Response) => {
   const page = new LoginPage();
+  res.set("Content-Type", "text/html").send(page.render());
+});
+
+app.get("/register", (req: Request, res: Response) => {
+  const page = new RegisterPage();
   res.set("Content-Type", "text/html").send(page.render());
 });
 
