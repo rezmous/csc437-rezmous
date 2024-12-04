@@ -26,12 +26,19 @@ var import_shoe = require("./pages/shoe");
 var import_shoe_svc = __toESM(require("./services/shoe-svc"));
 var import_mongo = require("./services/mongo");
 var import_shoes = __toESM(require("./routes/shoes"));
+var import_auth = __toESM(require("./routes/auth"));
+var import_auth2 = require("./pages/auth");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
 app.use(import_express.default.json());
-app.use("/api/shoes", import_shoes.default);
+app.use("/auth", import_auth.default);
+app.use("/api/shoes", import_auth.authenticateUser, import_shoes.default);
+app.get("/login", (req, res) => {
+  const page = new import_auth2.LoginPage();
+  res.set("Content-Type", "text/html").send(page.render());
+});
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
 });

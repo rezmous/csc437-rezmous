@@ -13,8 +13,10 @@ export class ShoePage {
     return renderPage({
       body: html`
         <body>
-          <header-component></header-component>
-          <main class="shoe-page">${this.renderBody()}</main>
+          <mu-auth provides="sole_collection:auth">
+            <header-component></header-component>
+            <main class="shoe-page">${this.renderBody()}</main>
+          </mu-auth>
         </body>
       `,
       styles: [
@@ -30,13 +32,14 @@ export class ShoePage {
         `,
       ],
       scripts: [
-        `import { define } from "@calpoly/mustang";
+        `import { define, Auth } from "@calpoly/mustang";
         import { ShoeCardElement } from "/scripts/shoeCardElement.js";
         import { HeaderElement } from "/scripts/headerElement.js";
 
         define({
           "shoe-card": ShoeCardElement,
-          "header-component": HeaderElement
+          "header-component": HeaderElement,
+          "mu-auth": Auth.Provider,
         });`,
       ],
     });
@@ -45,9 +48,6 @@ export class ShoePage {
   renderBody() {
     const { sku } = this.data;
 
-    return html`
-      <shoe-card src="/api/shoes/${sku}">
-      </shoe-card>
-    `;
+    return html` <shoe-card src="/api/shoes/${sku}"> </shoe-card> `;
   }
 }

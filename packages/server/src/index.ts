@@ -3,7 +3,8 @@ import { ShoePage } from "./pages/shoe";
 import Shoes from "./services/shoe-svc";
 import { connect } from "./services/mongo";
 import shoes from "./routes/shoes";
-
+import auth, { authenticateUser } from "./routes/auth";
+import { LoginPage } from "./pages/auth";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,7 +13,13 @@ const staticDir = process.env.STATIC || "public";
 app.use(express.static(staticDir));
 
 app.use(express.json());
-app.use("/api/shoes", shoes);
+app.use("/auth", auth);
+app.use("/api/shoes", authenticateUser, shoes);
+
+app.get("/login", (req: Request, res: Response) => {
+  const page = new LoginPage();
+  res.set("Content-Type", "text/html").send(page.render());
+});
 
 app.get("/hello", (req: Request, res: Response) => {
   res.send("Hello, World");

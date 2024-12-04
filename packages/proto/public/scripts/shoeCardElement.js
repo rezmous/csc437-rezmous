@@ -1,4 +1,4 @@
-import { css, html, shadow } from "@calpoly/mustang";
+import { css, html, shadow, Observer } from "@calpoly/mustang";
 import reset from "./styles/reset.css.js";
 
 export class ShoeCardElement extends HTMLElement {
@@ -223,12 +223,39 @@ export class ShoeCardElement extends HTMLElement {
     return this.getAttribute("src");
   }
 
+  _authObserver = new Observer(this, "sole_collection:auth");
+
+  get authorization() {
+    if (this._user?.authenticated) {
+      return { Authorization: `Bearer ${this._user.token}` };
+    } else {
+      console.warn("No authenticated user; returning empty headers");
+      return {};
+    }
+  }
+
   connectedCallback() {
-    if (this.src) this.hydrate(this.src);
+    this._authObserver.observe(({ user }) => {
+      this._user = user;
+      if (user && user.authenticated && this.src) {
+        this.hydrate(this.src);
+      }
+    });
   }
 
   hydrate(url) {
-    fetch(url)
+    if (!this._user || !this._user.authenticated) {
+      console.error("No authenticated user; cannot fetch data.");
+      return;
+    }
+
+    const headers = {
+      Authorization: `Bearer ${this._user.token}`,
+    };
+
+    console.log("Headers being sent:", headers);
+
+    fetch(url, { headers })
       .then((res) => {
         if (res.status !== 200) throw new Error(`Status: ${res.status}`);
         return res.json();

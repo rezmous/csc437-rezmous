@@ -1,4 +1,4 @@
-import { css, html, shadow } from "@calpoly/mustang";
+import { css, html, shadow, Observer, Events } from "@calpoly/mustang";
 import reset from "./styles/reset.css.js";
 
 export class HeaderElement extends HTMLElement {
@@ -19,7 +19,10 @@ export class HeaderElement extends HTMLElement {
           <use href="/icons/logo.svg#icon-solelogo"></use>
         </svg>
         <nav>
-          <a href="SneakerCollector/collector1.html">Your Collection</a>
+          <a href="SneakerCollector/collector1.html">
+            <span id="userid"></span>'s Collection
+          </a>
+          <a id="signout" href="#">Sign Out</a>
         </nav>
       </header>
       <script>
@@ -117,16 +120,59 @@ export class HeaderElement extends HTMLElement {
     }
   `;
 
+  get userid() {
+    return this._userid?.textContent || "";
+  }
+
+  set userid(id) {
+    if (id === "anonymous" || !id) {
+      this._userid.textContent = "";
+      this._signout.disabled = true;
+      localStorage.removeItem("userid");
+    } else {
+      this._userid.textContent = id;
+      this._signout.disabled = false;
+      localStorage.setItem("userid", id);
+    }
+  }
+
   constructor() {
     super();
     shadow(this)
       .template(HeaderElement.template)
       .styles(reset.styles, HeaderElement.styles);
+
+    this._signout = this.shadowRoot.querySelector("#signout");
+
+    this._signout.addEventListener("click", (event) => {
+      event.preventDefault();
+      Events.relay(event, "auth:message", ["auth/signout"]);
+      localStorage.removeItem("userid");
+      window.location.href = "/login";
+    });
   }
+
+  _authObserver = new Observer(this, "sole_collection:auth");
 
   connectedCallback() {
     const label = this.shadowRoot.querySelector(".dark-mode-switch");
     const toggle = this.shadowRoot.querySelector("#darkModeToggle");
+    this._userid = this.shadowRoot.querySelector("#userid");
+    this._signout = this.shadowRoot.querySelector("#signout");
+    const storedUser = localStorage.getItem("userid");
+
+    if (storedUser) {
+      this.userid = storedUser;
+    }
+
+    this._signout.addEventListener("click", (event) => {
+      event.preventDefault();
+      const signoutEvent = new CustomEvent("auth:message", {
+        bubbles: true,
+        detail: { type: "auth/signout" },
+      });
+      this.dispatchEvent(signoutEvent);
+    });
 
     const isDarkMode = localStorage.getItem("darkMode") === "true";
     if (toggle) {
@@ -145,5 +191,11 @@ export class HeaderElement extends HTMLElement {
         );
       });
     }
+
+    this._authObserver.observe(({ user }) => {
+      if (user && user.username !== this.userid) {
+        this.userid = user.username;
+      }
+    });
   }
 }

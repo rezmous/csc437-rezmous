@@ -26,59 +26,53 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var shoe_exports = {};
-__export(shoe_exports, {
-  ShoePage: () => ShoePage
+var auth_exports = {};
+__export(auth_exports, {
+  LoginPage: () => LoginPage
 });
-module.exports = __toCommonJS(shoe_exports);
+module.exports = __toCommonJS(auth_exports);
 var import_server = require("@calpoly/mustang/server");
 var import_renderPage = __toESM(require("./renderPage"));
-class ShoePage {
-  data;
-  constructor(data) {
-    this.data = data;
-  }
+class LoginPage {
   render() {
     return (0, import_renderPage.default)({
+      scripts: [
+        `
+          import { define, Auth } from "@calpoly/mustang";
+          import { LoginForm } from "/scripts/login-form.js";
+          import { HeaderElement } from "/scripts/headerElement.js";
+  
+          define({
+            "mu-auth": Auth.Provider,
+            "login-form": LoginForm,
+            "header-component": HeaderElement
+          })
+          `
+      ],
+      styles: [import_server.css``],
       body: import_server.html`
         <body>
           <mu-auth provides="sole_collection:auth">
-            <header-component></header-component>
-            <main class="shoe-page">${this.renderBody()}</main>
+            <article>
+              <header-component></header-component>
+              <main class="page">
+                <login-form api="/auth/login">
+                  <h3 slot="title">Sign in and go places!</h3>
+                </login-form>
+                <p class="register">
+                  Or did you want to
+                  <a href="./register"> register as a new user </a>
+                  ?
+                </p>
+              </main>
+            </article>
           </mu-auth>
         </body>
-      `,
-      styles: [
-        import_server.css`
-          main.shoe-page {
-            --page-padding: 20px;
-            --font-size: 1rem;
-            @media screen and (max-width: 48rem) {
-              --page-padding: 10px;
-              --font-size: 0.875rem;
-            }
-          }
-        `
-      ],
-      scripts: [
-        `import { define, Auth } from "@calpoly/mustang";
-        import { ShoeCardElement } from "/scripts/shoeCardElement.js";
-        import { HeaderElement } from "/scripts/headerElement.js";
-
-        define({
-          "shoe-card": ShoeCardElement,
-          "header-component": HeaderElement,
-          "mu-auth": Auth.Provider,
-        });`
-      ]
+      `
     });
-  }
-  renderBody() {
-    const { sku } = this.data;
-    return import_server.html` <shoe-card src="/api/shoes/${sku}"> </shoe-card> `;
   }
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  ShoePage
+  LoginPage
 });
