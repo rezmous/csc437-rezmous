@@ -41,9 +41,9 @@ export class CollectorPage {
           ul[slot="shoe-models"] {
             list-style: none;
             padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px; 
           }
 
           ul[slot="manufacturers"] li,

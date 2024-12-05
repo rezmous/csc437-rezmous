@@ -33,33 +33,49 @@ const CollectorSchema = new import_mongoose.Schema(
 );
 const CollectorModel = (0, import_mongoose.model)("Collector", CollectorSchema);
 function get(username) {
-  return CollectorModel.findOne({ username }).then(async (collector) => {
-    if (!collector) throw new Error(`Collector ${username} not found.`);
-    const shoes = await import_shoe_svc.ShoeModel.find({
-      sku: { $in: collector.shoeCollection }
-    });
-    const totalValue = shoes.reduce((sum, shoe) => {
-      return sum + (shoe.price?.marketPrice || 0);
-    }, 0);
-    const brandCount = shoes.reduce((acc, shoe) => {
-      acc[shoe.brand] = (acc[shoe.brand] || 0) + 1;
-      return acc;
-    }, {});
-    const favoriteBrand = Object.entries(brandCount).sort((a, b) => b[1] - a[1])[0]?.[0] || "N/A";
-    const shoeModels = shoes.map((shoe) => ({
-      sku: shoe.sku,
-      name: shoe.name
-    }));
-    const manufacturers = Array.from(new Set(shoes.map((shoe) => shoe.brand)));
-    return {
-      username: collector.username,
-      totalValue,
-      quantity: collector.shoeCollection.length,
-      favoriteBrand,
-      shoeModels,
-      manufacturers
-    };
-  });
+  return CollectorModel.findOne({ username }).then(
+    async (collector) => {
+      if (!collector) {
+        console.log(`Collector ${username} not found. Creating new collector.`);
+        collector = await CollectorModel.create({
+          username,
+          shoeCollection: []
+        });
+      }
+      const shoes = await import_shoe_svc.ShoeModel.find({
+        sku: { $in: collector.shoeCollection }
+      });
+      const totalValue = shoes.reduce(
+        (sum, shoe) => {
+          return sum + (shoe.price?.marketPrice || 0);
+        },
+        0
+      );
+      const brandCount = shoes.reduce(
+        (acc, shoe) => {
+          acc[shoe.brand] = (acc[shoe.brand] || 0) + 1;
+          return acc;
+        },
+        {}
+      );
+      const favoriteBrand = Object.entries(brandCount).sort((a, b) => b[1] - a[1])[0]?.[0] || "N/A";
+      const shoeModels = shoes.map((shoe) => ({
+        sku: shoe.sku,
+        name: shoe.name
+      }));
+      const manufacturers = Array.from(
+        new Set(shoes.map((shoe) => shoe.brand))
+      );
+      return {
+        username: collector.username,
+        totalValue,
+        quantity: collector.shoeCollection.length,
+        favoriteBrand,
+        shoeModels,
+        manufacturers
+      };
+    }
+  );
 }
 var collector_svc_default = { get };
 // Annotate the CommonJS export names for ESM import in node:
