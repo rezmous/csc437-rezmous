@@ -19,7 +19,7 @@ export class HeaderElement extends HTMLElement {
           <use href="/icons/logo.svg#icon-solelogo"></use>
         </svg>
         <nav>
-          <a href="SneakerCollector/collector1.html">
+          <a id="collection-link" href="">
             <span id="userid"></span>'s Collection
           </a>
           <a id="signout" href="#">Sign Out</a>
@@ -123,16 +123,22 @@ export class HeaderElement extends HTMLElement {
   get userid() {
     return this._userid?.textContent || "";
   }
-
+  
   set userid(id) {
     if (id === "anonymous" || !id) {
       this._userid.textContent = "";
-      this._signout.disabled = true;
+      this._signout.disabled = false;
+      this._signout.textContent = "Sign In"; 
+      this._signout.href = "/login"; 
       localStorage.removeItem("userid");
+      this._collectionLink.href = ""; 
     } else {
       this._userid.textContent = id;
       this._signout.disabled = false;
+      this._signout.textContent = "Sign Out"; 
+      this._signout.href = "/login"; 
       localStorage.setItem("userid", id);
+      this._collectionLink.href = `/collector/${id}`; 
     }
   }
 
@@ -159,6 +165,7 @@ export class HeaderElement extends HTMLElement {
     const toggle = this.shadowRoot.querySelector("#darkModeToggle");
     this._userid = this.shadowRoot.querySelector("#userid");
     this._signout = this.shadowRoot.querySelector("#signout");
+    this._collectionLink = this.shadowRoot.querySelector("#collection-link");
     const storedUser = localStorage.getItem("userid");
 
     if (storedUser) {

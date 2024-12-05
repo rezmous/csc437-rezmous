@@ -24,18 +24,22 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var import_express = __toESM(require("express"));
 var import_shoe = require("./pages/shoe");
 var import_shoe_svc = __toESM(require("./services/shoe-svc"));
+var import_collector_svc = __toESM(require("./services/collector-svc"));
 var import_mongo = require("./services/mongo");
 var import_shoes = __toESM(require("./routes/shoes"));
 var import_auth = __toESM(require("./routes/auth"));
 var import_auth2 = require("./pages/auth");
 var import_registerAuth = require("./pages/registerAuth");
+var import_collector = __toESM(require("./routes/collector"));
+var import_collector2 = require("./pages/collector");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
 app.use(import_express.default.json());
 app.use("/auth", import_auth.default);
-app.use("/api/shoes", import_auth.authenticateUser, import_shoes.default);
+app.use("/api/shoes", import_shoes.default);
+app.use("/api/collector", import_auth.authenticateUser, import_collector.default);
 app.get("/login", (req, res) => {
   const page = new import_auth2.LoginPage();
   res.set("Content-Type", "text/html").send(page.render());
@@ -58,6 +62,19 @@ app.get("/shoes/:sku", (req, res) => {
       return;
     }
     res.set("Content-Type", "text/html").send(new import_shoe.ShoePage(shoe).render());
+  }).catch((err) => {
+    console.error(err.message);
+    res.status(500).send("Internal Server Error");
+  });
+});
+app.get("/collector/:username", (req, res) => {
+  const { username } = req.params;
+  import_collector_svc.default.get(username).then((collector2) => {
+    if (!collector2) {
+      res.status(404).send(`Collector with username "${username}" not found`);
+      return;
+    }
+    res.set("Content-Type", "text/html").send(new import_collector2.CollectorPage(collector2).render());
   }).catch((err) => {
     console.error(err.message);
     res.status(500).send("Internal Server Error");
