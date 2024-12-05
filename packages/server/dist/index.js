@@ -41,6 +41,7 @@ app.use("/auth", import_auth.default);
 app.use("/api/shoes", import_shoes.default);
 app.use("/api/collector", import_auth.authenticateUser, import_collector.default);
 app.get("/login", (req, res) => {
+  console.log("Login page requested");
   const page = new import_auth2.LoginPage();
   res.set("Content-Type", "text/html").send(page.render());
 });

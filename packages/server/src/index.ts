@@ -22,6 +22,7 @@ app.use("/api/shoes", shoes);
 app.use("/api/collector", authenticateUser, collector);
 
 app.get("/login", (req: Request, res: Response) => {
+  console.log("Login page requested");
   const page = new LoginPage();
   res.set("Content-Type", "text/html").send(page.render());
 });
