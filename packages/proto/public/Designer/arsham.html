@@ -1,26 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <title>Designer - Daniel Arsham</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+        }
+      }
+    </script>
+    <script type="module">
+      import { define } from "@calpoly/mustang";
+      import { HeaderElement } from "/scripts/headerElement.js";
+
+      define({
+        "header-component": HeaderElement,
+      });
+    </script>
   </head>
-  <article>
-    <header>
-      <h1>Designer</h1>
-    </header>
-    <body>
-      <h2><a>Daniel Arsham</a></h2>
-      <section class="arsham">
-        <h3>Designs for</h3>
-        <ul>
-          <li><a href="/Manufacturer/adidas.html">Adidas</a></li>
-        </ul>
+  <body>
+    <header-component></header-component>
+    <main>
+      <section class="designer-overview">
+        <div class="card">
+          <h2>Who is Daniel Arsham?</h2>
+          <figure>
+            <img
+              src="https://assets.mocomuseum.com/images_prod/transforms/artist/_2900x1631_crop_center-center_none/17080/Ams-Museum-Daniel-Arsham-Eroded-Patches.jpg"
+              alt="Daniel Arsham"
+            />
+          </figure>
+          <p>
+            Daniel Arsham is a multidisciplinary artist and designer known for
+            his futuristic and eroded art style. His collaborations with Adidas
+            on the 4D series have redefined the intersection of art and sneaker
+            design.
+          </p>
+        </div>
       </section>
-      <section class="arshamShoe">
-        <h3>Shoe Model</h3>
-        <ul>
-          <li><a href="/ShoeModel/adidas4D.html">Adidas 4D FWD</a></li>
-        </ul>
+      <section class="card">
+        <div class="designer-section">
+          <h3>Designs For</h3>
+          <ul>
+            <li>
+              <a href="/Manufacturer/adidas.html">Adidas</a>
+            </li>
+          </ul>
+        </div>
       </section>
-    </body>
-  </article>
+      <section class="card">
+        <div class="designer-section">
+          <h3>Shoe Models</h3>
+          <ul>
+            <li>
+              <a href="/shoes/F35155">Adidas 4D FWD</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

@@ -1,26 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <title>Designer - Jerry Lorenzo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+        }
+      }
+    </script>
+    <script type="module">
+      import { define } from "@calpoly/mustang";
+      import { HeaderElement } from "/scripts/headerElement.js";
+
+      define({
+        "header-component": HeaderElement,
+      });
+    </script>
   </head>
-  <article>
-    <header>
-      <h1>Designer</h1>
-    </header>
-    <body>
-      <h2><a>Jerry Lorenzo</a></h2>
-      <section class="lorenzo">
-        <h3>Designs for</h3>
-        <ul>
-          <li><a href="/Manufacturer/adidas.html">Adidas</a></li>
-        </ul>
+  <body>
+    <header-component></header-component>
+    <main>
+      <section class="designer-overview">
+        <div class="card">
+          <h2>Who is Jerry Lorenzo?</h2>
+          <figure>
+            <img
+              src="https://cdn.shopify.com/s/files/1/0408/9909/files/Jerry_Lorenzo_Editorial_-_Feature_-_April_13_2022_-_2.png?v=1649892505"
+              alt="Jerry Lorenzo"
+            />
+          </figure>
+          <p>
+            Jerry Lorenzo is a fashion designer and the founder of Fear of God.
+            Known for his contemporary designs, he has collaborated with brands
+            like Adidas and Nike, and is currently with Adidas. He brings a
+            unique streetwear aesthetic to high-performance footwear.
+          </p>
+        </div>
       </section>
-      <section class="lorenzoShoe">
-        <h3>Shoe Model</h3>
-        <ul>
-          <li><a href="/ShoeModel/fearOfGod1.html">Fear of God 1</a></li>
-        </ul>
+      <section class="card">
+        <div class="designer-section">
+          <h3>Designs For</h3>
+          <ul>
+            <li>
+              <a href="/Manufacturer/adidas.html">Adidas</a>
+            </li>
+          </ul>
+        </div>
       </section>
-    </body>
-  </article>
+      <section class="card">
+        <div class="designer-section">
+          <h3>Shoe Models</h3>
+          <ul>
+            <li>
+              <a href="/shoes/AR4237-001">Fear of God 1</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

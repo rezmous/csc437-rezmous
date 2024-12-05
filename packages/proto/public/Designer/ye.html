@@ -1,26 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <title>Designer - Ye</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+        }
+      }
+    </script>
+    <script type="module">
+      import { define } from "@calpoly/mustang";
+      import { HeaderElement } from "/scripts/headerElement.js";
+
+      define({
+        "header-component": HeaderElement,
+      });
+    </script>
   </head>
-  <article>
-    <header>
-      <h1>Designer</h1>
-    </header>
-    <body>
-      <h2><a>Ye</a></h2>
-      <section class="tinker">
-        <h3>Designs for</h3>
-        <ul>
-          <li><a href="/Manufacturer/adidas.html">Adidas</a></li>
-        </ul>
+  <body>
+    <header-component></header-component>
+    <main>
+      <section class="designer-overview">
+        <div class="card">
+          <h2>Who is Ye?</h2>
+          <figure>
+            <img
+              src="https://gray-wtok-prod.gtv-cdn.com/resizer/v2/SAXZJAIOSRF4NEEQHDUT4KFIRU.png?auth=6ae09f4cc6f2ba0b576c9f223bc2c49aea8d6e7b735b106ffb75a990c0939d87&width=800&height=450&smart=true"
+              alt="Ye"
+            />
+          </figure>
+          <p>
+            Ye, formerly known as Kanye West, is a renowned designer and music artist 
+            famous for his collaboration with Adidas on the Yeezy line. Ye has significantly 
+            influenced streetwear and sneaker culture.
+          </p>
+        </div>
       </section>
-      <section class="yeShoe">
-        <h3>Shoe Model</h3>
-        <ul>
-          <li><a href="/ShoeModel/yeezy350.html">Yeezy Boost 350</a></li>
-        </ul>
+      <section class="card">
+        <div class="designer-section">
+          <h3>Designs For</h3>
+          <ul>
+            <li>
+              <a href="/Manufacturer/adidas.html">Adidas</a>
+            </li>
+          </ul>
+        </div>
       </section>
-    </body>
-  </article>
+      <section class="card">
+        <div class="designer-section">
+          <h3>Shoe Models</h3>
+          <ul>
+            <li>
+              <a href="/shoes/CP9654">Yeezy Boost 350</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

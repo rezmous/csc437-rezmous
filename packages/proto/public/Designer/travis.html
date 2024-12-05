@@ -1,27 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <title>Designer - Travis Scott</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+        }
+      }
+    </script>
+    <script type="module">
+      import { define } from "@calpoly/mustang";
+      import { HeaderElement } from "/scripts/headerElement.js";
+
+      define({
+        "header-component": HeaderElement,
+      });
+    </script>
   </head>
-  <article>
-    <header>
-      <h1>Designer</h1>
-    </header>
-    <body>
-      <h2><a>Travis Scott</a></h2>
-      <section class="travis">
-        <h3>Designs for</h3>
-        <ul>
-          <li><a href="/Manufacturer/nike.html">Nike</a></li>
-          <li><a href="/Manufacturer/jordan.html">Jordan Brand</a></li>
-        </ul>
+  <body>
+    <header-component></header-component>
+    <main>
+      <section class="designer-overview">
+        <div class="card">
+          <h2>Who is Travis Scott?</h2>
+          <figure>
+            <img
+              src="https://www.billboard.com/wp-content/uploads/2021/11/travis-scott-astroworld-2021-2-billboard-1548-1636217991.png"
+              alt="Travis Scott"
+            />
+          </figure>
+          <p>
+            Travis Scott, a globally recognized music artist, is also known for
+            his unique designs and collaborations with Nike and Jordan Brand.
+            His sneaker releases, including the reverse swoosh design, have
+            become iconic in modern sneaker culture.
+          </p>
+        </div>
       </section>
-      <section class="travisShoe">
-        <h3>Shoe Model</h3>
-        <ul>
-          <li><a href="/ShoeModel/airJordan1.html">Air Jordan 1</a></li>
-        </ul>
+      <section class="card">
+        <div class="designer-section">
+          <h3>Designs For</h3>
+          <ul>
+            <li>
+              <a href="/Manufacturer/nike.html">Nike</a>
+            </li>
+            <li>
+              <a href="/Manufacturer/jordan.html">Jordan Brand</a>
+            </li>
+          </ul>
+        </div>
       </section>
-    </body>
-  </article>
+      <section class="card">
+        <div class="designer-section">
+          <h3>Shoe Models</h3>
+          <ul>
+            <li>
+              <a href="/shoes/555088-610">Air Jordan 1</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

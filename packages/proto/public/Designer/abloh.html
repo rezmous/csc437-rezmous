@@ -1,29 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <title>Designer - Virgil Abloh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
-    `
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+        }
+      }
+    </script>
+    <script type="module">
+      import { define } from "@calpoly/mustang";
+      import { HeaderElement } from "/scripts/headerElement.js";
+
+      define({
+        "header-component": HeaderElement,
+      });
+    </script>
   </head>
-  <article>
-    <header>
-      <h1>Designer</h1>
-    </header>
-    <body>
-      <h2><a>Virgil Abloh</a></h2>
-      <section class="ablohDesigns">
-        <h3>Designs for</h3>
-        <ul>
-          <li><a href="/Manufacturer/nike.html">Nike</a></li>
-          <li><a href="/Manufacturer/jordan.html">Jordan Brand</a></li>
-        </ul>
+  <body>
+    <header-component></header-component>
+    <main>
+      <section class="designer-overview">
+        <div class="card">
+          <h2>Who is Virgil Abloh?</h2>
+          <figure>
+            <img
+              src="https://res.cloudinary.com/dmubfrefi/image/private/s--4m5Pijb1--/c_crop,h_1079,w_1079,x_0,y_201/c_scale,w_3840/f_auto/q_auto/v1/dee-about-cms-prod-medias/e8e3218f-12bf-4861-bd20-e435cd2c814e/virgil-abloh-nike-the10-12-73201.jpg?_a=BAAAV6Bs"
+              alt="Virgil Abloh"
+            />
+          </figure>
+          <p>
+            Virgil Abloh was a visionary designer and artist, known for founding
+            the luxury streetwear brand Off-White and serving as the Artistic
+            Director of Louis Vuitton's menswear. His work with Nike and Jordan
+            Brand, including "The Ten" collection, redefined modern sneaker
+            culture.
+          </p>
+        </div>
       </section>
-      <section class="ablohDesignsShoe">
-        <h3>Shoe Model</h3>
-        <ul>
-          <li><a href="/ShoeModel/airJordan1.html">Air Jordan 1</a></li>
-          <li><a href="/ShoeModel/nikePresto.html">Nike Presto</a></li>
-        </ul>
+      <section class="card">
+        <div class="designer-section">
+          <h3>Designs For</h3>
+          <ul>
+            <li>
+              <a href="/Manufacturer/nike.html">Nike</a>
+            </li>
+            <li>
+              <a href="/Manufacturer/jordan.html">Jordan Brand</a>
+            </li>
+          </ul>
+        </div>
       </section>
-    </body>
-  </article>
+      <section class="card">
+        <div class="designer-section">
+          <h3>Shoe Models</h3>
+          <ul>
+            <li>
+              <a href="/shoes/555088-610">Air Jordan 1</a>
+            </li>
+            <li>
+              <a href="/shoes/AQ0818-100">Nike Presto</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
