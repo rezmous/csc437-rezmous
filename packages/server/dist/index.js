@@ -28,8 +28,6 @@ var import_collector_svc = __toESM(require("./services/collector-svc"));
 var import_mongo = require("./services/mongo");
 var import_shoes = __toESM(require("./routes/shoes"));
 var import_auth = __toESM(require("./routes/auth"));
-var import_auth2 = require("./pages/auth");
-var import_registerAuth = require("./pages/registerAuth");
 var import_collector = __toESM(require("./routes/collector"));
 var import_collector2 = require("./pages/collector");
 var import_promises = __toESM(require("node:fs/promises"));
@@ -42,14 +40,6 @@ app.use(import_express.default.json());
 app.use("/auth", import_auth.default);
 app.use("/api/shoes", import_shoes.default);
 app.use("/api/collector", import_auth.authenticateUser, import_collector.default);
-app.get("/login", (req, res) => {
-  const page = new import_auth2.LoginPage();
-  res.set("Content-Type", "text/html").send(page.render());
-});
-app.get("/register", (req, res) => {
-  const page = new import_registerAuth.RegisterPage();
-  res.set("Content-Type", "text/html").send(page.render());
-});
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
 });

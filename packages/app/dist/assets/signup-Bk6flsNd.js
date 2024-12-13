@@ -1,12 +1,36 @@
-import { css, html, LitElement } from "lit";
-import { property } from "lit/decorators.js";
-
-export class LoginFormElement extends LitElement {
-  @property({ type: String }) api = "/auth/login";
-  @property({ type: String }) redirect = "/";
-  @property({ type: String }) message = "";
-
-  static styles = css`
+import{r as c,i as h,x as m,d as u,a as f}from"./lit-element-Bk48Xmzb.js";import{n as i}from"./property-t4k3YoSR.js";var g=Object.defineProperty,n=(d,o,a,l)=>{for(var e=void 0,r=d.length-1,p;r>=0;r--)(p=d[r])&&(e=p(o,a,e)||e);return e&&g(o,a,e),e};const s=class s extends c{constructor(){super(...arguments),this.api="/auth/register",this.redirect="/",this.message=""}render(){return m`
+      <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <form @submit=${this._handleSubmit}>
+        <h3>Register with Username and Password</h3>
+        <label>
+          Username
+          <input name="username" type="text" autocomplete="username" required />
+        </label>
+        <label>
+          Password
+          <input
+            name="password"
+            type="password"
+            autocomplete="new-password"
+            required
+          />
+        </label>
+        <label>
+          Confirm Password
+          <input
+            name="confirmPassword"
+            type="password"
+            autocomplete="new-password"
+            required
+          />
+        </label>
+        <button type="submit">Register</button>
+        <p class="error">${this.message}</p>
+      </form>
+    `}_handleSubmit(o){o.preventDefault();const a=o.target,l=new FormData(a),e=JSON.stringify(Object.fromEntries(l));fetch(this.api,{method:"POST",headers:{"Content-Type":"application/json"},body:e}).then(r=>{if(!r.ok)throw r.status===409?new Error("Username already exists."):new Error("Failed to register. Please try again.");return r.json()}).then(()=>{window.location.href=this.redirect}).catch(r=>{console.error("Registration failed:",r),this.message=r.message})}};s.styles=h`
     :host {
       display: flex;
       justify-content: center;
@@ -119,98 +143,10 @@ export class LoginFormElement extends LitElement {
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-    .register {
-      margin-top: 1rem;
-      font-size: var(--font-size-small);
-      color: var(--color-link);
-      text-align: center;
-    }
-
-    .register a {
-      text-decoration: none;
-      color: var(--color-accent);
-      font-weight: var(--font-weight-bold);
-    }
-
-    .register a:hover {
-      text-decoration: underline;
-    }
-
     .error {
       color: firebrick;
       font-size: var(--font-size-small);
       margin-top: 0.5rem;
       text-align: center;
     }
-  `;
-
-  render() {
-    return html`
-      <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-      </div>
-      <form @submit=${this._handleSubmit}>
-        <slot name="title">
-          <h3>Welcome to Sole Collection!</h3>
-        </slot>
-        <label>
-          Username
-          <input name="username" type="text" autocomplete="username" required />
-        </label>
-        <label>
-          Password
-          <input
-            name="password"
-            type="password"
-            autocomplete="current-password"
-            required
-          />
-        </label>
-        <button type="submit">Sign In</button>
-        <p class="error">${this.message}</p>
-        <p class="register">New user? <a href="/newuser.html">Register here</a></p>
-      </form>
-    `;
-  }
-
-  private _handleSubmit(event: Event) {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const data = new FormData(form);
-    const body = JSON.stringify(Object.fromEntries(data));
-
-    fetch(this.api, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body,
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(`Status ${res.status}`);
-        return res.json();
-      })
-      .then(({ token }) => {
-        console.log("Token received:", token);
-
-        const payload = JSON.parse(atob(token.split(".")[1]));
-        const userId = payload.username;
-
-        localStorage.setItem("auth-token", token);
-        localStorage.setItem("userid", userId);
-
-        this.dispatchEvent(
-          new CustomEvent("auth:signin", {
-            bubbles: true,
-            composed: true,
-            detail: { token, userId },
-          })
-        );
-
-        window.location.href = this.redirect;
-      })
-      .catch((err) => {
-        console.error("Login failed:", err);
-        this.message = "Invalid Username or Password";
-      });
-  }
-}
+  `;let t=s;n([i({type:String})],t.prototype,"api");n([i({type:String})],t.prototype,"redirect");n([i({type:String})],t.prototype,"message");u({"mu-auth":f.Provider,"register-form":t});

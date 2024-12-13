@@ -15,19 +15,18 @@
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
     <link rel="stylesheet" href="/styles/tokens.css" />
-    <title>Sole Collection</title>
-    <script type="module" crossorigin src="/assets/spa-Dm5quUI_.js"></script>
+    <title>Sole Collection - Login</title>
+    <script type="module" crossorigin src="/assets/login-DCAjacPN.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/lit-element-Bk48Xmzb.js">
+    <link rel="modulepreload" crossorigin href="/assets/property-t4k3YoSR.js">
   </head>
   <body>
-    <mu-history provides="sole_collection:history">
-      <mu-auth provides="sole_collection:auth" redirect="/login.html">
-          <article class="page">
-            <solecollection-header></solecollection-header>
-            <mu-switch></mu-switch>
-          </article>
-        </mu-store>
-      </mu-auth>
-    </mu-history>
+    <mu-auth provides="sole_collection:auth">
+      <main class="page">
+        <login-form api="/auth/login" redirect="/">
+          <h3 slot="title">Welcome to Sole Collection!</h3>
+        </login-form>
+      </main>
+    </mu-auth>
   </body>
 </html>

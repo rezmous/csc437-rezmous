@@ -1,8 +1,8 @@
 import { css, html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 
-export class LoginFormElement extends LitElement {
-  @property({ type: String }) api = "/auth/login";
+export class RegisterFormElement extends LitElement {
+  @property({ type: String }) api = "/auth/register";
   @property({ type: String }) redirect = "/";
   @property({ type: String }) message = "";
 
@@ -119,23 +119,6 @@ export class LoginFormElement extends LitElement {
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-    .register {
-      margin-top: 1rem;
-      font-size: var(--font-size-small);
-      color: var(--color-link);
-      text-align: center;
-    }
-
-    .register a {
-      text-decoration: none;
-      color: var(--color-accent);
-      font-weight: var(--font-weight-bold);
-    }
-
-    .register a:hover {
-      text-decoration: underline;
-    }
-
     .error {
       color: firebrick;
       font-size: var(--font-size-small);
@@ -151,9 +134,7 @@ export class LoginFormElement extends LitElement {
         <div class="shape"></div>
       </div>
       <form @submit=${this._handleSubmit}>
-        <slot name="title">
-          <h3>Welcome to Sole Collection!</h3>
-        </slot>
+        <h3>Register with Username and Password</h3>
         <label>
           Username
           <input name="username" type="text" autocomplete="username" required />
@@ -163,13 +144,21 @@ export class LoginFormElement extends LitElement {
           <input
             name="password"
             type="password"
-            autocomplete="current-password"
+            autocomplete="new-password"
             required
           />
         </label>
-        <button type="submit">Sign In</button>
+        <label>
+          Confirm Password
+          <input
+            name="confirmPassword"
+            type="password"
+            autocomplete="new-password"
+            required
+          />
+        </label>
+        <button type="submit">Register</button>
         <p class="error">${this.message}</p>
-        <p class="register">New user? <a href="/newuser.html">Register here</a></p>
       </form>
     `;
   }
@@ -186,31 +175,20 @@ export class LoginFormElement extends LitElement {
       body,
     })
       .then((res) => {
-        if (!res.ok) throw new Error(`Status ${res.status}`);
+        if (!res.ok) {
+          if (res.status === 409) {
+            throw new Error("Username already exists.");
+          }
+          throw new Error("Failed to register. Please try again.");
+        }
         return res.json();
       })
-      .then(({ token }) => {
-        console.log("Token received:", token);
-
-        const payload = JSON.parse(atob(token.split(".")[1]));
-        const userId = payload.username;
-
-        localStorage.setItem("auth-token", token);
-        localStorage.setItem("userid", userId);
-
-        this.dispatchEvent(
-          new CustomEvent("auth:signin", {
-            bubbles: true,
-            composed: true,
-            detail: { token, userId },
-          })
-        );
-
+      .then(() => {
         window.location.href = this.redirect;
       })
       .catch((err) => {
-        console.error("Login failed:", err);
-        this.message = "Invalid Username or Password";
+        console.error("Registration failed:", err);
+        this.message = err.message;
       });
   }
 }

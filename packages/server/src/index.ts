@@ -24,17 +24,6 @@ app.use("/auth", auth);
 app.use("/api/shoes", shoes);
 app.use("/api/collector", authenticateUser, collector);
 
-
-app.get("/login", (req: Request, res: Response) => {
-  const page = new LoginPage();
-  res.set("Content-Type", "text/html").send(page.render());
-});
-
-app.get("/register", (req: Request, res: Response) => {
-  const page = new RegisterPage();
-  res.set("Content-Type", "text/html").send(page.render());
-});
-
 app.get("/hello", (req: Request, res: Response) => {
   res.send("Hello, World");
 });

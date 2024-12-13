@@ -15,19 +15,22 @@
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/page.css" />
     <link rel="stylesheet" href="/styles/tokens.css" />
-    <title>Sole Collection</title>
-    <script type="module" crossorigin src="/assets/spa-Dm5quUI_.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/lit-element-Bk48Xmzb.js">
+    <title>Sole Collection - Register</title>
+    <script type="module">
+      import { define, Auth } from "@calpoly/mustang";
+      import { RegisterFormElement } from "/src/components/register-form";
+
+      define({
+        "mu-auth": Auth.Provider,
+        "register-form": RegisterFormElement,
+      });
+    </script>
   </head>
   <body>
-    <mu-history provides="sole_collection:history">
-      <mu-auth provides="sole_collection:auth" redirect="/login.html">
-          <article class="page">
-            <solecollection-header></solecollection-header>
-            <mu-switch></mu-switch>
-          </article>
-        </mu-store>
-      </mu-auth>
-    </mu-history>
+    <mu-auth provides="sole_collection:auth">
+      <main class="page">
+        <register-form api="/auth/register" redirect="/login"> </register-form>
+      </main>
+    </mu-auth>
   </body>
 </html>

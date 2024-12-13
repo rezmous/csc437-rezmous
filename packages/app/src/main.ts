@@ -30,14 +30,6 @@ const routes = [
       <collector-view username=${params.username}></collector-view>
     `,
   },
-  // {
-  //   path: "/login",
-  //   view: () => html` <login-view></login-view> `,
-  // },
-  {
-    path: "/register",
-    view: () => html` <register-view></register-view> `,
-  },
   {
     path: "/",
     redirect: "/app",

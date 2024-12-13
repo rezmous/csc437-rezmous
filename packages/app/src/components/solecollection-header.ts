@@ -159,14 +159,14 @@ export class SoleCollectionHeaderElement extends LitElement {
     const userId = this.getUserId();
   
     if (!userId) {
-      window.location.href = "/login";
+      window.location.href = "/login.html";
     } else {
       localStorage.removeItem("userid");
       localStorage.removeItem("auth-token");
   
       Events.relay(ev, "auth:signout");
   
-      window.location.href = "/login";
+      window.location.href = "/login.html";
     }
   }
 

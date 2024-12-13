@@ -1,12 +1,30 @@
-import { css, html, LitElement } from "lit";
-import { property } from "lit/decorators.js";
-
-export class LoginFormElement extends LitElement {
-  @property({ type: String }) api = "/auth/login";
-  @property({ type: String }) redirect = "/";
-  @property({ type: String }) message = "";
-
-  static styles = css`
+import{r as h,i as u,x as g,d as m,a as f}from"./lit-element-Bk48Xmzb.js";import{n}from"./property-t4k3YoSR.js";var b=Object.defineProperty,s=(d,o,a,c)=>{for(var t=void 0,e=d.length-1,i;e>=0;e--)(i=d[e])&&(t=i(o,a,t)||t);return t&&b(o,a,t),t};const l=class l extends h{constructor(){super(...arguments),this.api="/auth/login",this.redirect="/",this.message=""}render(){return g`
+      <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <form @submit=${this._handleSubmit}>
+        <slot name="title">
+          <h3>Welcome to Sole Collection!</h3>
+        </slot>
+        <label>
+          Username
+          <input name="username" type="text" autocomplete="username" required />
+        </label>
+        <label>
+          Password
+          <input
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+        </label>
+        <button type="submit">Sign In</button>
+        <p class="error">${this.message}</p>
+        <p class="register">New user? <a href="/newuser.html">Register here</a></p>
+      </form>
+    `}_handleSubmit(o){o.preventDefault();const a=o.target,c=new FormData(a),t=JSON.stringify(Object.fromEntries(c));fetch(this.api,{method:"POST",headers:{"Content-Type":"application/json"},body:t}).then(e=>{if(!e.ok)throw new Error(`Status ${e.status}`);return e.json()}).then(({token:e})=>{console.log("Token received:",e);const p=JSON.parse(atob(e.split(".")[1])).username;localStorage.setItem("auth-token",e),localStorage.setItem("userid",p),this.dispatchEvent(new CustomEvent("auth:signin",{bubbles:!0,composed:!0,detail:{token:e,userId:p}})),window.location.href=this.redirect}).catch(e=>{console.error("Login failed:",e),this.message="Invalid Username or Password"})}};l.styles=u`
     :host {
       display: flex;
       justify-content: center;
@@ -142,75 +160,4 @@ export class LoginFormElement extends LitElement {
       margin-top: 0.5rem;
       text-align: center;
     }
-  `;
-
-  render() {
-    return html`
-      <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-      </div>
-      <form @submit=${this._handleSubmit}>
-        <slot name="title">
-          <h3>Welcome to Sole Collection!</h3>
-        </slot>
-        <label>
-          Username
-          <input name="username" type="text" autocomplete="username" required />
-        </label>
-        <label>
-          Password
-          <input
-            name="password"
-            type="password"
-            autocomplete="current-password"
-            required
-          />
-        </label>
-        <button type="submit">Sign In</button>
-        <p class="error">${this.message}</p>
-        <p class="register">New user? <a href="/newuser.html">Register here</a></p>
-      </form>
-    `;
-  }
-
-  private _handleSubmit(event: Event) {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const data = new FormData(form);
-    const body = JSON.stringify(Object.fromEntries(data));
-
-    fetch(this.api, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body,
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(`Status ${res.status}`);
-        return res.json();
-      })
-      .then(({ token }) => {
-        console.log("Token received:", token);
-
-        const payload = JSON.parse(atob(token.split(".")[1]));
-        const userId = payload.username;
-
-        localStorage.setItem("auth-token", token);
-        localStorage.setItem("userid", userId);
-
-        this.dispatchEvent(
-          new CustomEvent("auth:signin", {
-            bubbles: true,
-            composed: true,
-            detail: { token, userId },
-          })
-        );
-
-        window.location.href = this.redirect;
-      })
-      .catch((err) => {
-        console.error("Login failed:", err);
-        this.message = "Invalid Username or Password";
-      });
-  }
-}
+  `;let r=l;s([n({type:String})],r.prototype,"api");s([n({type:String})],r.prototype,"redirect");s([n({type:String})],r.prototype,"message");m({"mu-auth":f.Provider,"login-form":r});
