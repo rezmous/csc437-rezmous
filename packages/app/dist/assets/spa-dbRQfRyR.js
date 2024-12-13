@@ -1,4 +1,4 @@
-import{r as p,i as u,x as s,e as y,n as g,V as P,a as c,d as D,h as T,s as I,_ as A}from"./property-Boso9Xnl.js";const v=class v extends p{connectedCallback(){super.connectedCallback(),this.applyDarkMode()}render(){return s`
+import{r as u,i as p,x as s,e as w,n as g,V as P,a as n,d as D,h as T,s as A,_ as I}from"./property-Boso9Xnl.js";const x=class x extends u{connectedCallback(){super.connectedCallback(),this.applyDarkMode()}render(){return s`
       <header>
         <label class="dark-mode-switch">
           <svg class="icon-darkmode">
@@ -30,7 +30,7 @@ import{r as p,i as u,x as s,e as y,n as g,V as P,a as c,d as D,h as T,s as I,_ a
       <a id="collection-link" href="/collector/${e}">
         <span id="userid">${e}</span>'s Collection
       </a>
-    `:s``}handleDarkModeToggle(e){const a=e.target.checked;y.relay(e,"darkmode:toggle",{isDarkMode:a}),this.updateDarkMode(a)}updateDarkMode(e){e?document.body.classList.add("dark-mode"):document.body.classList.remove("dark-mode"),localStorage.setItem("darkMode",String(e))}applyDarkMode(){const e=this.isDarkModeEnabled();this.updateDarkMode(e)}isDarkModeEnabled(){return localStorage.getItem("darkMode")==="true"}handleAuth(e){e.preventDefault(),this.getUserId()&&(localStorage.removeItem("userid"),localStorage.removeItem("auth-token"),y.relay(e,"auth:signout")),window.location.href="/login.html"}getUserId(){return localStorage.getItem("userid")||""}getAuthText(){return this.getUserId()?"Sign Out":"Sign In"}};v.styles=u`
+    `:s``}handleDarkModeToggle(e){const a=e.target.checked;w.relay(e,"darkmode:toggle",{isDarkMode:a}),this.updateDarkMode(a)}updateDarkMode(e){e?document.body.classList.add("dark-mode"):document.body.classList.remove("dark-mode"),localStorage.setItem("darkMode",String(e))}applyDarkMode(){const e=this.isDarkModeEnabled();this.updateDarkMode(e)}isDarkModeEnabled(){return localStorage.getItem("darkMode")==="true"}handleAuth(e){e.preventDefault(),this.getUserId()&&(localStorage.removeItem("userid"),localStorage.removeItem("auth-token"),w.relay(e,"auth:signout")),window.location.href="/login.html"}getUserId(){return localStorage.getItem("userid")||""}getAuthText(){return this.getUserId()?"Sign Out":"Sign In"}};x.styles=p`
     header {
       background-color: var(--color-background-header);
       padding: 20px;
@@ -104,7 +104,7 @@ import{r as p,i as u,x as s,e as y,n as g,V as P,a as c,d as D,h as T,s as I,_ a
     nav a:hover {
       background-color: var(--color-background-page);
     }
-  `;let m=v;const k=class k extends p{connectedCallback(){super.connectedCallback(),this.checkAuthStatus()}checkAuthStatus(){localStorage.getItem("auth-token")||(window.location.href="/login.html")}render(){return s`
+  `;let m=x;const k=class k extends u{connectedCallback(){super.connectedCallback(),this.checkAuthStatus()}checkAuthStatus(){localStorage.getItem("auth-token")||(window.location.href="/login.html")}render(){return s`
       <main class="page">
         <section class="manufacturer-cards">
           <div class="card">
@@ -145,7 +145,7 @@ import{r as p,i as u,x as s,e as y,n as g,V as P,a as c,d as D,h as T,s as I,_ a
           </p>
         </section>
       </main>
-    `}};k.styles=u`
+    `}};k.styles=p`
     :host {
       display: block;
     }
@@ -254,20 +254,20 @@ import{r as p,i as u,x as s,e as y,n as g,V as P,a as c,d as D,h as T,s as I,_ a
         width: 90%;
       }
     }
-  `;let x=k;/**
+  `;let v=k;/**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */function j(r){return g({...r,state:!0,attribute:!1})}var z=Object.defineProperty,E=Object.getOwnPropertyDescriptor,$=(r,e,o,a)=>{for(var t=a>1?void 0:a?E(e,o):e,n=r.length-1,i;n>=0;n--)(i=r[n])&&(t=(a?i(e,o,t):i(t))||t);return a&&t&&z(e,o,t),t};const b=class b extends P{constructor(){super(...arguments),this.username=""}get collector(){return this.model.collector}attributeChangedCallback(e,o,a){super.attributeChangedCallback(e,o,a),e==="username"&&o!==a&&a&&(console.log(`Fetching collector data for: ${a}`),this.dispatchMessage(["collector/select",{username:a}]))}render(){if(!this.collector)return s`<p class="loading">Loading collector data...</p>`;const{username:e,shoeModels:o=[],totalValue:a=0,quantity:t=0,manufacturers:n=[]}=this.collector;return s`
+ */function j(t){return g({...t,state:!0,attribute:!1})}var z=Object.defineProperty,E=Object.getOwnPropertyDescriptor,$=(t,e,o,a)=>{for(var r=a>1?void 0:a?E(e,o):e,c=t.length-1,i;c>=0;c--)(i=t[c])&&(r=(a?i(e,o,r):i(r))||r);return a&&r&&z(e,o,r),r};const b=class b extends P{constructor(){super(...arguments),this.username=""}get collector(){return this.model.collector}attributeChangedCallback(e,o,a){super.attributeChangedCallback(e,o,a),e==="username"&&o!==a&&a&&(console.log(`Fetching collector data for: ${a}`),this.dispatchMessage(["collector/select",{username:a}]))}render(){if(!this.collector)return s`<p class="loading">Loading collector data...</p>`;const{username:e,shoeModels:o=[],totalValue:a=0,quantity:r=0,manufacturers:c=[]}=this.collector;return s`
       <section class="collector-page">
         <div class="collection-header">
           <h1>${e}'s Collection</h1>
-          <p>Total Value: $${a} | ${t} Pairs</p>
+          <p>Total Value: $${a} | ${r} Pairs</p>
         </div>
         <section class="manufacturer-section">
           <h2>Manufacturers</h2>
           <ul>
-            ${n.map(i=>s`<li>
+            ${c.map(i=>s`<li>
                   <a href="/Manufacturer/${i.toLowerCase()}.html"
                     >${i}</a
                   >
@@ -283,7 +283,7 @@ import{r as p,i as u,x as s,e as y,n as g,V as P,a as c,d as D,h as T,s as I,_ a
           </ul>
         </section>
       </section>
-    `}};b.styles=u`
+    `}};b.styles=p`
     :host {
       display: block;
     }
@@ -373,49 +373,59 @@ import{r as p,i as u,x as s,e as y,n as g,V as P,a as c,d as D,h as T,s as I,_ a
         grid-template-columns: 1fr;
       }
     }
-  `;let l=b;$([g({attribute:"username",reflect:!0})],l.prototype,"username",2);$([j()],l.prototype,"collector",1);function _(r,e,o){switch(r[0]){case"collector/select":F(r[1],o).then(t=>e(n=>({...n,collector:t})));break;case"collector/save":L(r[1],o).then(()=>console.log("Collector saved successfully")).catch(t=>console.error("Failed to save collector:",t));break;case"shoe/select":O(r[1],o).then(t=>e(n=>({...n,shoe:t})));break;case"shoe/save":U(r[1],o).then(()=>console.log("Shoe saved successfully")).catch(t=>console.error("Failed to save shoe:",t));break;default:const a=r[0];throw new Error(`Unhandled message "${a}"`)}}function F(r,e){var a;console.log("Fetching collector data for:",r.username);const o={...c.headers(e),Authorization:`Bearer ${(a=c.headers(e).Authorization)==null?void 0:a.replace("Bearer ","")}`};return fetch(`/api/collector/${r.username}`,{headers:o}).then(t=>{if(!t.ok)throw new Error(`Error fetching collector data: ${t.status}`);return t.json()}).then(t=>(console.log("Collector data received:",t),t)).catch(t=>{console.error("Failed to fetch collector data:",t)})}function L(r,e){return fetch(`/api/collector/${r.username}`,{method:"PUT",headers:{"Content-Type":"application/json",...c.headers(e)},body:JSON.stringify(r.collector)}).then(o=>{if(!o.ok)throw new Error(`Failed to save collector: ${o.status}`)})}function O(r,e){return fetch(`/api/shoes/${r.sku}`,{headers:c.headers(e)}).then(o=>{if(!o.ok)throw new Error(`Failed to fetch shoe: ${o.status}`);return o.json()}).then(o=>o).catch(o=>{console.error("Error fetching shoe data:",o)})}function U(r,e){return fetch(`/api/shoes/${r.sku}`,{method:"PUT",headers:{"Content-Type":"application/json",...c.headers(e)},body:JSON.stringify(r.shoe)}).then(o=>{if(!o.ok)throw new Error(`Failed to save shoe: ${o.status}`)})}const N={};var J=Object.defineProperty,C=(r,e,o,a)=>{for(var t=void 0,n=r.length-1,i;n>=0;n--)(i=r[n])&&(t=i(e,o,t)||t);return t&&J(e,o,t),t};const w=class w extends p{connectedCallback(){super.connectedCallback(),this.sku&&this.fetchShoe(this.sku)}attributeChangedCallback(e,o,a){super.attributeChangedCallback(e,o,a),e==="sku"&&o!==a&&a&&this.fetchShoe(a)}async fetchShoe(e){try{const o=await fetch(`/api/shoes/${e}`,{headers:{"Content-Type":"application/json"}});if(!o.ok)throw new Error(`Failed to fetch shoe data: ${o.status}`);const a=await o.json();console.log("Fetched shoe data:",a),this.shoe=a}catch(o){console.error("Error fetching shoe data:",o),this.shoe=void 0}}render(){if(!this.shoe)return s`<p class="loading">Loading shoe data...</p>`;const{name:e,brand:o,colorway:a,releaseDate:t,featuredImage:n,price:i,inventory:f,categories:S=[],designer:h}=this.shoe;return s`
+  `;let d=b;$([g({attribute:"username",reflect:!0})],d.prototype,"username",2);$([j()],d.prototype,"collector",1);function _(t,e,o){switch(t[0]){case"collector/select":F(t[1],o).then(r=>e(c=>({...c,collector:r})));break;case"collector/save":L(t[1],o).then(()=>console.log("Collector saved successfully")).catch(r=>console.error("Failed to save collector:",r));break;case"shoe/select":O(t[1],o).then(r=>e(c=>({...c,shoe:r})));break;case"shoe/save":U(t[1],o).then(()=>console.log("Shoe saved successfully")).catch(r=>console.error("Failed to save shoe:",r));break;default:const a=t[0];throw new Error(`Unhandled message "${a}"`)}}function F(t,e){var a;console.log("Fetching collector data for:",t.username);const o={...n.headers(e),Authorization:`Bearer ${(a=n.headers(e).Authorization)==null?void 0:a.replace("Bearer ","")}`};return fetch(`/api/collector/${t.username}`,{headers:o}).then(r=>{if(!r.ok)throw new Error(`Error fetching collector data: ${r.status}`);return r.json()}).then(r=>(console.log("Collector data received:",r),r)).catch(r=>{console.error("Failed to fetch collector data:",r)})}function L(t,e){return fetch(`/api/collector/${t.username}`,{method:"PUT",headers:{"Content-Type":"application/json",...n.headers(e)},body:JSON.stringify(t.collector)}).then(o=>{if(!o.ok)throw new Error(`Failed to save collector: ${o.status}`)})}function O(t,e){return fetch(`/api/shoes/${t.sku}`,{headers:n.headers(e)}).then(o=>{if(!o.ok)throw new Error(`Failed to fetch shoe: ${o.status}`);return o.json()}).then(o=>o).catch(o=>{console.error("Error fetching shoe data:",o)})}function U(t,e){return fetch(`/api/shoes/${t.sku}`,{method:"PUT",headers:{"Content-Type":"application/json",...n.headers(e)},body:JSON.stringify(t.shoe)}).then(o=>{if(!o.ok)throw new Error(`Failed to save shoe: ${o.status}`)})}const N={};var J=Object.defineProperty,C=(t,e,o,a)=>{for(var r=void 0,c=t.length-1,i;c>=0;c--)(i=t[c])&&(r=i(e,o,r)||r);return r&&J(e,o,r),r};const y=class y extends u{connectedCallback(){super.connectedCallback(),this.sku&&this.fetchShoe(this.sku)}attributeChangedCallback(e,o,a){super.attributeChangedCallback(e,o,a),e==="sku"&&o!==a&&a&&this.fetchShoe(a)}async fetchShoe(e){try{const o=await fetch(`/api/shoes/${e}`,{headers:{"Content-Type":"application/json"}});if(!o.ok)throw new Error(`Failed to fetch shoe data: ${o.status}`);const a=await o.json();console.log("Fetched shoe data:",a),this.shoe=a}catch(o){console.error("Error fetching shoe data:",o),this.shoe=void 0}}render(){if(!this.shoe)return s`<p class="loading">Loading shoe data...</p>`;const{name:e,brand:o,colorway:a,releaseDate:r,featuredImage:c,price:i,inventory:f,categories:S=[],designer:l}=this.shoe;return s`
       <main class="shoe-page">
         <section class="shoe-header">
           <h1>${e}</h1>
           <p>${o} | ${a}</p>
-          <p>Release Date: ${new Date(t).toLocaleDateString()}</p>
+          <p>Release Date: ${new Date(r).toLocaleDateString()}</p>
         </section>
         <section class="shoe-image">
-          <img src="${n}" alt="${e}" />
+          <img src="${c}" alt="${e}" />
         </section>
         <section class="shoe-details">
           <h2>Price</h2>
-          <p>Retail: $${i.originalPrice}</p>
-          ${i.marketPrice?s`<p>Market: $${i.marketPrice}</p>`:""}
+          <div class="info-item">Retail: $${i.originalPrice}</div>
+          ${i.marketPrice?s`<div class="info-item">Market: $${i.marketPrice}</div>`:""}
+
           <h2>Inventory</h2>
-          <p>Production: ${f.productionNumber}</p>
-          <p>Pairs Sold: ${f.pairsSold}</p>
-          ${f.isLimitedEdition?s`<p><strong>Limited Edition</strong></p>`:""}
+          <div class="info-item">Production: ${f.productionNumber}</div>
+          <div class="info-item">Pairs Sold: ${f.pairsSold}</div>
+          ${f.isLimitedEdition?s`<div class="info-item">
+                <strong>Limited Edition</strong>
+              </div>`:""}
+
           <h2>Categories</h2>
-          <ul>
-            ${S.map(M=>s`<li>${M}</li>`)}
-          </ul>
-          ${h?s`
+          <div class="category-buttons">
+            ${S.map(M=>s`<button class="category-btn">${M}</button>`)}
+          </div>
+
+          ${l?s`
                 <h2>Designer</h2>
-                <p>${h.name}</p>
-                ${h.collaborators?s`<p>
-                      Collaborators: ${h.collaborators.join(", ")}
-                    </p>`:""}
+                <div class="info-item">${l.name}</div>
+              `:""}
+
+          ${l&&l.collaborators?s`
+                <h2>Collaborators</h2>
+                <div class="info-item">${l.collaborators.join(", ")}</div>
               `:""}
         </section>
       </main>
-    `}};w.styles=u`
+    `}};y.styles=p`
     :host {
       display: block;
-    }
-
-    .shoe-page {
-      padding: 20px;
+      text-align: center;
       font-family: "Montserrat", sans-serif;
     }
 
+    .shoe-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
     .shoe-header {
-      text-align: center;
       margin-bottom: 20px;
     }
 
@@ -437,7 +447,10 @@ import{r as p,i as u,x as s,e as y,n as g,V as P,a as c,d as D,h as T,s as I,_ a
     }
 
     .shoe-details {
+      max-width: 800px;
       margin-top: 20px;
+      text-align: left;
+      width: 100%;
     }
 
     .shoe-details h2 {
@@ -448,35 +461,60 @@ import{r as p,i as u,x as s,e as y,n as g,V as P,a as c,d as D,h as T,s as I,_ a
       color: var(--color-text);
     }
 
-    .shoe-details p {
-      margin-bottom: 10px;
-      color: var(--color-link);
-    }
-
-    .shoe-details ul {
-      list-style: none;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 15px;
-    }
-
-    .shoe-details ul li {
+    .info-item {
+      display: inline-block;
       background-color: var(--color-background-card);
-      padding: 10px;
+      padding: 10px 15px;
       border: 1px solid var(--color-link);
       border-radius: 8px;
-      text-align: center;
+      margin: 5px;
       color: var(--color-link);
+    }
+
+    .category-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      background-color: var(--color-background-card);
+      padding: 10px 20px;
+      border: 1px solid var(--color-link);
+      border-radius: 8px;
+      color: var(--color-link);
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .category-btn:hover {
+      background-color: var(--color-link);
+      color: var(--color-background-card);
+    }
+
+    /* Add hover effect only for Collaborators section */
+    .info-item:hover {
+      background-color: var(--color-link);
+      color: var(--color-background-card);
+    }
+
+    .category-btn:hover {
+      background-color: var(--color-link);
+      color: var(--color-background-card);
     }
 
     @media screen and (max-width: 768px) {
       .shoe-details ul {
         grid-template-columns: 1fr;
       }
+
+      .shoe-page {
+        padding: 10px;
+      }
     }
-  `;let d=w;C([g()],d.prototype,"sku");C([g({state:!0})],d.prototype,"shoe");class B extends p{render(){return s` <home-view></home-view> `}connectedCallback(){super.connectedCallback()}}const R=[{path:"/shoes/:sku",view:r=>s`
-      <shoe-view sku=${r.sku}></shoe-view>
-    `},{path:"/collector/:username",view:r=>s`
-      <collector-view username=${r.username}></collector-view>
-    `},{path:"/",redirect:"/app"},{path:"/app",view:()=>s` <home-view></home-view> `}];D({"mu-auth":c.Provider,"mu-history":T.Provider,"mu-store":class extends I.Provider{constructor(){super(_,N,"sole_collection:auth")}},"mu-switch":class extends A.Element{constructor(){super(R,"sole_collection:history","sole_collection:auth")}},"solecollection-app":B,"solecollection-header":m,"home-view":x,"collector-view":l,"shoe-view":d});
+  `;let h=y;C([g()],h.prototype,"sku");C([g({state:!0})],h.prototype,"shoe");class B extends u{render(){return s` <home-view></home-view> `}connectedCallback(){super.connectedCallback()}}const R=[{path:"/shoes/:sku",view:t=>s`
+      <shoe-view sku=${t.sku}></shoe-view>
+    `},{path:"/collector/:username",view:t=>s`
+      <collector-view username=${t.username}></collector-view>
+    `},{path:"/",redirect:"/app"},{path:"/app",view:()=>s` <home-view></home-view> `}];D({"mu-auth":n.Provider,"mu-history":T.Provider,"mu-store":class extends A.Provider{constructor(){super(_,N,"sole_collection:auth")}},"mu-switch":class extends I.Element{constructor(){super(R,"sole_collection:history","sole_collection:auth")}},"solecollection-app":B,"solecollection-header":m,"home-view":v,"collector-view":d,"shoe-view":h});

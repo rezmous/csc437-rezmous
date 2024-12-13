@@ -71,27 +71,39 @@ export class ShoeViewElement extends LitElement {
         </section>
         <section class="shoe-details">
           <h2>Price</h2>
-          <p>Retail: $${price.originalPrice}</p>
-          ${price.marketPrice ? html`<p>Market: $${price.marketPrice}</p>` : ""}
-          <h2>Inventory</h2>
-          <p>Production: ${inventory.productionNumber}</p>
-          <p>Pairs Sold: ${inventory.pairsSold}</p>
-          ${inventory.isLimitedEdition
-            ? html`<p><strong>Limited Edition</strong></p>`
+          <div class="info-item">Retail: $${price.originalPrice}</div>
+          ${price.marketPrice
+            ? html`<div class="info-item">Market: $${price.marketPrice}</div>`
             : ""}
+
+          <h2>Inventory</h2>
+          <div class="info-item">Production: ${inventory.productionNumber}</div>
+          <div class="info-item">Pairs Sold: ${inventory.pairsSold}</div>
+          ${inventory.isLimitedEdition
+            ? html`<div class="info-item">
+                <strong>Limited Edition</strong>
+              </div>`
+            : ""}
+
           <h2>Categories</h2>
-          <ul>
-            ${categories.map((category: any) => html`<li>${category}</li>`)}
-          </ul>
+          <div class="category-buttons">
+            ${categories.map(
+              (category: any) =>
+                html`<button class="category-btn">${category}</button>`
+            )}
+          </div>
+
           ${designer
             ? html`
                 <h2>Designer</h2>
-                <p>${designer.name}</p>
-                ${designer.collaborators
-                  ? html`<p>
-                      Collaborators: ${designer.collaborators.join(", ")}
-                    </p>`
-                  : ""}
+                <div class="info-item">${designer.name}</div>
+              `
+            : ""}
+
+          ${designer && designer.collaborators
+            ? html`
+                <h2>Collaborators</h2>
+                <div class="info-item">${designer.collaborators.join(", ")}</div>
               `
             : ""}
         </section>
@@ -102,15 +114,18 @@ export class ShoeViewElement extends LitElement {
   static styles = css`
     :host {
       display: block;
-    }
-
-    .shoe-page {
-      padding: 20px;
+      text-align: center;
       font-family: "Montserrat", sans-serif;
     }
 
+    .shoe-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
     .shoe-header {
-      text-align: center;
       margin-bottom: 20px;
     }
 
@@ -132,7 +147,10 @@ export class ShoeViewElement extends LitElement {
     }
 
     .shoe-details {
+      max-width: 800px;
       margin-top: 20px;
+      text-align: left;
+      width: 100%;
     }
 
     .shoe-details h2 {
@@ -143,32 +161,56 @@ export class ShoeViewElement extends LitElement {
       color: var(--color-text);
     }
 
-    .shoe-details p {
-      margin-bottom: 10px;
-      color: var(--color-link);
-    }
-
-    .shoe-details ul {
-      list-style: none;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 15px;
-    }
-
-    .shoe-details ul li {
+    .info-item {
+      display: inline-block;
       background-color: var(--color-background-card);
-      padding: 10px;
+      padding: 10px 15px;
       border: 1px solid var(--color-link);
       border-radius: 8px;
-      text-align: center;
+      margin: 5px;
       color: var(--color-link);
+    }
+
+    .category-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      background-color: var(--color-background-card);
+      padding: 10px 20px;
+      border: 1px solid var(--color-link);
+      border-radius: 8px;
+      color: var(--color-link);
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .category-btn:hover {
+      background-color: var(--color-link);
+      color: var(--color-background-card);
+    }
+
+    /* Add hover effect only for Collaborators section */
+    .info-item:hover {
+      background-color: var(--color-link);
+      color: var(--color-background-card);
+    }
+
+    .category-btn:hover {
+      background-color: var(--color-link);
+      color: var(--color-background-card);
     }
 
     @media screen and (max-width: 768px) {
       .shoe-details ul {
         grid-template-columns: 1fr;
       }
+
+      .shoe-page {
+        padding: 10px;
+      }
     }
-  `;
-}
+  `;}
