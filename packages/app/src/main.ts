@@ -8,6 +8,7 @@ import { Model, init } from "./model";
 import { Msg } from "./messages";
 import { ShoeViewElement } from "./views/shoe-view";
 import { ManufacturerViewElement } from "./views/manufacturer-view";
+import { DesignerViewElement } from "./views/designer-view";
 
 class AppElement extends LitElement {
   protected render() {
@@ -39,6 +40,12 @@ const routes = [
     `,
   },
   {
+    path: "/designer/:name",
+    view: (params: Switch.Params) => html`
+      <designer-view designerName=${params.name}></designer-view>
+    `,
+  },
+  {
     path: "/",
     redirect: "/app",
   },
@@ -65,6 +72,7 @@ define({
   "solecollection-header": SoleCollectionHeaderElement,
   "home-view": HomeViewElement,
   "collector-view": CollectorViewElement,
+  "designer-view": DesignerViewElement,
   "manufacturer-view": ManufacturerViewElement,
   "shoe-view": ShoeViewElement,
 });

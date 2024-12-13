@@ -21,9 +21,9 @@ export class ManufacturerViewElement extends LitElement {
       description:
         "Nike, Inc. is an American multinational corporation engaged in the design, development, manufacturing, and marketing of footwear, apparel, equipment, and accessories. Known for its iconic swoosh logo and tagline 'Just Do It.'",
       designers: [
-        { name: "Tinker Hatfield", link: "/Designer/tinker.html" },
-        { name: "Travis Scott", link: "/Designer/travis.html" },
-        { name: "Virgil Abloh", link: "/Designer/abloh.html" },
+        { name: "Tinker Hatfield", link: "/designer/tinker" },
+        { name: "Travis Scott", link: "/designer/travis" },
+        { name: "Virgil Abloh", link: "/designer/abloh" },
       ],
     },
     jordan: {
@@ -33,9 +33,9 @@ export class ManufacturerViewElement extends LitElement {
       description:
         "Jordan Brand, a subsidiary of Nike, is an American sportswear brand inspired by NBA Hall of Famer Michael Jordan. It is known for its signature Air Jordan sneakers and its influence on basketball culture and fashion.",
       designers: [
-        { name: "Tinker Hatfield", link: "/Designer/tinker.html" },
-        { name: "Travis Scott", link: "/Designer/travis.html" },
-        { name: "Virgil Abloh", link: "/Designer/abloh.html" },
+        { name: "Tinker Hatfield", link: "/designer/tinker" },
+        { name: "Travis Scott", link: "/designer/travis" },
+        { name: "Virgil Abloh", link: "/designer/abloh" },
       ],
     },
     adidas: {
@@ -45,9 +45,9 @@ export class ManufacturerViewElement extends LitElement {
       description:
         "Adidas is a German multinational corporation that designs and manufactures shoes, clothing, and accessories. Known for its iconic three stripes, Adidas is a leader in the global sportswear industry, creating innovative designs and partnering with world-renowned designers and athletes.",
       designers: [
-        { name: "Daniel Arsham", link: "/Designer/arsham.html" },
-        { name: "Jerry Lorenzo", link: "/Designer/lorenzo.html" },
-        { name: "Ye", link: "/Designer/ye.html" },
+        { name: "Daniel Arsham", link: "/designer/arsham" },
+        { name: "Jerry Lorenzo", link: "/designer/lorenzo" },
+        { name: "Ye", link: "/designer/ye" },
       ],
     },
   };
