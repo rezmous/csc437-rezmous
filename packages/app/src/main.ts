@@ -7,9 +7,9 @@ import update from "./update";
 import { Model, init } from "./model";
 import { Msg } from "./messages";
 import { ShoeViewElement } from "./views/shoe-view";
+import { ManufacturerViewElement } from "./views/manufacturer-view";
 
 class AppElement extends LitElement {
-
   protected render() {
     return html` <home-view></home-view> `;
   }
@@ -30,6 +30,12 @@ const routes = [
     path: "/collector/:username",
     view: (params: Switch.Params) => html`
       <collector-view username=${params.username}></collector-view>
+    `,
+  },
+  {
+    path: "/manufacturer/:name",
+    view: (params: Switch.Params) => html`
+      <manufacturer-view manufacturerName=${params.name}></manufacturer-view>
     `,
   },
   {
@@ -59,5 +65,6 @@ define({
   "solecollection-header": SoleCollectionHeaderElement,
   "home-view": HomeViewElement,
   "collector-view": CollectorViewElement,
+  "manufacturer-view": ManufacturerViewElement,
   "shoe-view": ShoeViewElement,
 });

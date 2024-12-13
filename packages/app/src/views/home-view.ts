@@ -4,11 +4,11 @@ export class HomeViewElement extends LitElement {
   static styles = css`
     :host {
       display: block;
+      background-color: var(--color-background-page);
     }
 
     body {
       color: var(--color-text);
-      background-color: var(--color-background-page);
       font-family: "Montserrat", sans-serif;
       font-weight: 400;
     }
@@ -39,12 +39,6 @@ export class HomeViewElement extends LitElement {
       text-align: center;
       min-width: 250px;
       max-width: 400px;
-      transition: transform 0.3s ease;
-    }
-
-    .manufacturer-cards .card:hover {
-      transform: scale(1.05);
-      position: relative;
     }
 
     .manufacturer-cards .card h2 {
@@ -120,10 +114,9 @@ export class HomeViewElement extends LitElement {
   checkAuthStatus() {
     const token = localStorage.getItem("auth-token");
     if (!token) {
-      window.location.href = "/login.html"; 
+      window.location.href = "/login.html";
     }
   }
-
 
   render() {
     return html`
@@ -134,21 +127,21 @@ export class HomeViewElement extends LitElement {
             <svg class="icon brand-logo">
               <use href="/assets/logo.svg#icon-nikelogo"></use>
             </svg>
-            <a href="/shoes/AQ0818-100">Explore Nike</a>
+            <a href="/manufacturer/nike">Explore Nike</a>
           </div>
           <div class="card">
             <h2>Jordan Brand</h2>
             <svg class="icon brand-logo">
               <use href="/assets/logo.svg#icon-jordanlogo"></use>
             </svg>
-            <a href="/jordan.html">Explore Jordan</a>
+            <a href="manufacturer/jordan">Explore Jordan</a>
           </div>
           <div class="card">
             <h2>Adidas</h2>
             <svg class="icon brand-logo">
               <use href="/assets/logo.svg#icon-adidaslogo"></use>
             </svg>
-            <a href="/adidas.html">Explore Adidas</a>
+            <a href="manufacturer/adidas">Explore Adidas</a>
           </div>
         </section>
         <section class="info-section">

@@ -14,10 +14,7 @@ export default {
       input: {
         spa: resolve(__dirname, "index.html"),
         login: resolve(__dirname, "login.html"),
-        signup: resolve(__dirname, "newuser.html"),
-        jordan: resolve(__dirname, "jordan.html"),
-        adidas: resolve(__dirname, "adidas.html"),
-        nike: resolve(__dirname, "nike.html"),
+        signup: resolve(__dirname, "newuser.html")
       },
     },
   },
