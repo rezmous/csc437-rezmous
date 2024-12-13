@@ -1,12 +1,14 @@
-import { Auth, History, Switch, define } from "@calpoly/mustang";
+import { Auth, History, Switch, Store, define } from "@calpoly/mustang";
 import { html, LitElement } from "lit";
 import { SoleCollectionHeaderElement } from "./components/solecollection-header";
 import { HomeViewElement } from "./views/home-view";
+import { CollectorViewElement } from "./views/collector-view";
+import update from "./update";
+import { Model, init } from "./model";
+import { Msg } from "./messages";
+import { ShoeViewElement } from "./views/shoe-view";
 
 class AppElement extends LitElement {
-  static uses = define({
-    "home-view": HomeViewElement,
-  });
 
   protected render() {
     return html` <home-view></home-view> `;
@@ -43,6 +45,11 @@ const routes = [
 define({
   "mu-auth": Auth.Provider,
   "mu-history": History.Provider,
+  "mu-store": class AppStore extends Store.Provider<Model, Msg> {
+    constructor() {
+      super(update, init, "sole_collection:auth");
+    }
+  },
   "mu-switch": class AppSwitch extends Switch.Element {
     constructor() {
       super(routes, "sole_collection:history", "sole_collection:auth");
@@ -50,4 +57,7 @@ define({
   },
   "solecollection-app": AppElement,
   "solecollection-header": SoleCollectionHeaderElement,
+  "home-view": HomeViewElement,
+  "collector-view": CollectorViewElement,
+  "shoe-view": ShoeViewElement,
 });

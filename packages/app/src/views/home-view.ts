@@ -134,21 +134,21 @@ export class HomeViewElement extends LitElement {
             <svg class="icon brand-logo">
               <use href="/assets/logo.svg#icon-nikelogo"></use>
             </svg>
-            <a href="Manufacturer/nike.html">Explore Nike</a>
+            <a href="/shoes/AQ0818-100">Explore Nike</a>
           </div>
           <div class="card">
             <h2>Jordan Brand</h2>
             <svg class="icon brand-logo">
               <use href="/assets/logo.svg#icon-jordanlogo"></use>
             </svg>
-            <a href="Manufacturer/jordan.html">Explore Jordan</a>
+            <a href="/jordan.html">Explore Jordan</a>
           </div>
           <div class="card">
             <h2>Adidas</h2>
             <svg class="icon brand-logo">
               <use href="/assets/logo.svg#icon-adidaslogo"></use>
             </svg>
-            <a href="Manufacturer/adidas.html">Explore Adidas</a>
+            <a href="/adidas.html">Explore Adidas</a>
           </div>
         </section>
         <section class="info-section">

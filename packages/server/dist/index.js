@@ -22,16 +22,12 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_express = __toESM(require("express"));
-var import_shoe = require("./pages/shoe");
-var import_shoe_svc = __toESM(require("./services/shoe-svc"));
-var import_collector_svc = __toESM(require("./services/collector-svc"));
 var import_mongo = require("./services/mongo");
 var import_shoes = __toESM(require("./routes/shoes"));
 var import_auth = __toESM(require("./routes/auth"));
 var import_collector = __toESM(require("./routes/collector"));
-var import_collector2 = require("./pages/collector");
-var import_promises = __toESM(require("node:fs/promises"));
 var import_path = __toESM(require("path"));
+(0, import_mongo.connect)("sole_collection");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
@@ -39,43 +35,16 @@ app.use(import_express.default.static(staticDir));
 app.use(import_express.default.json());
 app.use("/auth", import_auth.default);
 app.use("/api/shoes", import_shoes.default);
-app.use("/api/collector", import_auth.authenticateUser, import_collector.default);
-app.get("/hello", (req, res) => {
-  res.send("Hello, World");
-});
-app.use("/app", (req, res) => {
-  const indexHtml = import_path.default.resolve(staticDir, "index.html");
-  import_promises.default.readFile(indexHtml, { encoding: "utf8" }).then(
-    (html) => res.send(html)
-  );
+app.use("/api/collector", import_collector.default);
+app.use((req, res, next) => {
+  const indexPath = import_path.default.resolve(staticDir, "index.html");
+  if (!req.path.startsWith("/api") && !req.path.startsWith("/auth")) {
+    console.log(`Serving index.html for path: ${req.path}`);
+    res.sendFile(indexPath);
+  } else {
+    next();
+  }
 });
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-app.get("/shoes/:sku", (req, res) => {
-  const { sku } = req.params;
-  import_shoe_svc.default.get(sku).then((shoe) => {
-    if (!shoe) {
-      res.status(404).send(`Shoe with SKU "${sku}" not found`);
-      return;
-    }
-    res.set("Content-Type", "text/html").send(new import_shoe.ShoePage(shoe).render());
-  }).catch((err) => {
-    console.error(err.message);
-    res.status(500).send("Internal Server Error");
-  });
-});
-app.get("/collector/:username", (req, res) => {
-  const { username } = req.params;
-  import_collector_svc.default.get(username).then((collector2) => {
-    if (!collector2) {
-      res.status(404).send(`Collector with username "${username}" not found`);
-      return;
-    }
-    res.set("Content-Type", "text/html").send(new import_collector2.CollectorPage(collector2).render());
-  }).catch((err) => {
-    console.error(err.message);
-    res.status(500).send("Internal Server Error");
-  });
-});
-(0, import_mongo.connect)("sole_collection");

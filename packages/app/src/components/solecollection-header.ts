@@ -88,7 +88,7 @@ export class SoleCollectionHeaderElement extends LitElement {
       <header>
         <label class="dark-mode-switch">
           <svg class="icon-darkmode">
-            <use href="./assets/logo.svg#icon-darkmode"></use>
+            <use href="/assets/logo.svg#icon-darkmode"></use>
           </svg>
           <input
             type="checkbox"
@@ -99,11 +99,11 @@ export class SoleCollectionHeaderElement extends LitElement {
           />
         </label>
         <svg class="icon left-logo">
-          <use href="./assets/logo.svg#icon-solelogo"></use>
+          <use href="/assets/logo.svg#icon-solelogo"></use>
         </svg>
         <h1><a href="/">Sole Collection</a></h1>
         <svg class="icon right-logo">
-          <use href="./assets/logo.svg#icon-solelogo"></use>
+          <use href="/assets/logo.svg#icon-solelogo"></use>
         </svg>
         <nav>
           ${this.renderCollectionLink()}
