@@ -32,6 +32,8 @@ var import_auth2 = require("./pages/auth");
 var import_registerAuth = require("./pages/registerAuth");
 var import_collector = __toESM(require("./routes/collector"));
 var import_collector2 = require("./pages/collector");
+var import_promises = __toESM(require("node:fs/promises"));
+var import_path = __toESM(require("path"));
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
@@ -41,7 +43,6 @@ app.use("/auth", import_auth.default);
 app.use("/api/shoes", import_shoes.default);
 app.use("/api/collector", import_auth.authenticateUser, import_collector.default);
 app.get("/login", (req, res) => {
-  console.log("Login page requested");
   const page = new import_auth2.LoginPage();
   res.set("Content-Type", "text/html").send(page.render());
 });
@@ -51,6 +52,12 @@ app.get("/register", (req, res) => {
 });
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
+});
+app.use("/app", (req, res) => {
+  const indexHtml = import_path.default.resolve(staticDir, "index.html");
+  import_promises.default.readFile(indexHtml, { encoding: "utf8" }).then(
+    (html) => res.send(html)
+  );
 });
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

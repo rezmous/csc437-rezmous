@@ -1,0 +1,31 @@
+:root {
+  --color-background-page: #f5f5f5;
+  --color-text: #333333;
+  --color-background-card: #ffffff;
+  --color-background-header: #007acc;
+  --color-link: #007acc;
+  --color-accent: #007acc;
+  --color-border: #cccccc;
+  --color-text-control: #333333;
+
+  --color-button-primary: #007bff;
+  --color-button-hover: #0056b3;
+  --color-button-active: #004080;
+  --color-button-text: #ffffff;
+}
+
+body.dark-mode {
+  --color-background-page: #1e1e1e;
+  --color-text: #d4d4d4;
+  --color-background-card: #252526;
+  --color-background-header: #005f9e;
+  --color-link: #9cdcfe;
+  --color-accent: #9cdcfe;
+  --color-border: #444444;
+  --color-text-control: #d4d4d4;
+
+  --color-button-primary: #1f6feb;
+  --color-button-hover: #144ea0;
+  --color-button-active: #0b3575;
+  --color-button-text: #ffffff;
+}

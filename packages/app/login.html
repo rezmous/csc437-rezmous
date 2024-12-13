@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <title>Sole Collection - Login</title>
+    <script type="module">
+      import { define, Auth } from "@calpoly/mustang";
+      import { LoginFormElement } from "/src/components/login-form";
+
+      define({
+        "mu-auth": Auth.Provider,
+        "login-form": LoginFormElement,
+      });
+    </script>
+  </head>
+  <body>
+    <mu-auth provides="sole_collection:auth">
+      <main class="page">
+        <login-form api="/auth/login" redirect="/">
+          <h3 slot="title">Welcome to Sole Collection!</h3>
+        </login-form>
+      </main>
+    </mu-auth>
+  </body>
+</html>

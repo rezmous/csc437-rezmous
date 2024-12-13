@@ -1,5 +1,6 @@
 export interface Shoe {
   sku: string;
+  shoes: Array<Shoe>;
   name: string;
   brand: BrandType;
   colorway: string;

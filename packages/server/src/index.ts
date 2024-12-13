@@ -10,6 +10,9 @@ import { RegisterPage } from "./pages/registerAuth";
 import collector from "./routes/collector";
 import { CollectorPage } from "./pages/collector";
 
+import fs from "node:fs/promises";
+import path from "path";
+
 const app = express();
 const port = process.env.PORT || 3000;
 const staticDir = process.env.STATIC || "public";
@@ -21,8 +24,8 @@ app.use("/auth", auth);
 app.use("/api/shoes", shoes);
 app.use("/api/collector", authenticateUser, collector);
 
+
 app.get("/login", (req: Request, res: Response) => {
-  console.log("Login page requested");
   const page = new LoginPage();
   res.set("Content-Type", "text/html").send(page.render());
 });
@@ -34,6 +37,13 @@ app.get("/register", (req: Request, res: Response) => {
 
 app.get("/hello", (req: Request, res: Response) => {
   res.send("Hello, World");
+});
+
+app.use("/app", (req: Request, res: Response) => {
+  const indexHtml = path.resolve(staticDir, "index.html");
+  fs.readFile(indexHtml, { encoding: "utf8" }).then((html) =>
+    res.send(html)
+  );
 });
 
 app.listen(port, () => {
