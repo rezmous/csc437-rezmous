@@ -1,6 +1,7 @@
 import { LitElement, css, html } from "lit";
-import { property } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { Shoe } from "server/models";
+import { define, Form } from "@calpoly/mustang";
 
 export class ShoeViewElement extends LitElement {
   @property()
@@ -9,6 +10,17 @@ export class ShoeViewElement extends LitElement {
   @property({ state: true })
   shoe?: Shoe;
 
+  @state()
+  editMode = false;
+
+  static uses = define({
+    "mu-form": Form.Element,
+  });
+
+
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+  }
   connectedCallback() {
     super.connectedCallback();
     if (this.sku) {
@@ -42,6 +54,48 @@ export class ShoeViewElement extends LitElement {
     }
   }
 
+  async handleEditSubmit(event: Event) {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+
+    const updatedFields = {
+      price: {
+        originalPrice: parseFloat(
+          (form.elements.namedItem("originalPrice") as HTMLInputElement)?.value
+        ),
+        marketPrice: parseFloat(
+          (form.elements.namedItem("marketPrice") as HTMLInputElement)?.value
+        ),
+      },
+      inventory: {
+        productionNumber: parseInt(
+          (form.elements.namedItem("productionNumber") as HTMLInputElement)
+            ?.value
+        ),
+        pairsSold: parseInt(
+          (form.elements.namedItem("pairsSold") as HTMLInputElement)?.value
+        ),
+      },
+    };
+
+    try {
+      const response = await fetch(`/api/shoes/${this.sku}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...this.shoe, ...updatedFields }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to update shoe: ${response.status}`);
+      }
+
+      this.shoe = await response.json();
+      this.editMode = false;
+    } catch (error) {
+      console.error("Error updating shoe:", error);
+    }
+  }
+
   render() {
     if (!this.shoe) {
       return html`<p class="loading">Loading shoe data...</p>`;
@@ -62,73 +116,130 @@ export class ShoeViewElement extends LitElement {
       <div class="shoe-card">
         <img src="${featuredImage}" alt="${name}" class="shoe-image" />
         <div class="shoe-content">
-          <h1 class="shoe-title">${name}</h1>
-          <p class="shoe-meta">${brand} | ${colorway}</p>
-          <p class="shoe-meta">
-            Release Date: ${new Date(releaseDate).toLocaleDateString()}
-          </p>
+          ${this.editMode
+            ? html`
+                <form @submit=${this.handleEditSubmit}>
+                  <h2>Edit Shoe Details</h2>
+                  <label>
+                    Original Price:
+                    <input
+                      type="number"
+                      name="originalPrice"
+                      value="${price.originalPrice}"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Market Price:
+                    <input
+                      type="number"
+                      name="marketPrice"
+                      value="${price.marketPrice || ""}"
+                    />
+                  </label>
+                  <label>
+                    Production Number:
+                    <input
+                      type="number"
+                      name="productionNumber"
+                      value="${inventory.productionNumber}"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Pairs Sold:
+                    <input
+                      type="number"
+                      name="pairsSold"
+                      value="${inventory.pairsSold}"
+                      required
+                    />
+                  </label>
+                  <div class="button-group">
+                    <button type="submit" class="button save">Save</button>
+                    <button
+                      type="button"
+                      @click=${this.toggleEditMode}
+                      class="button cancel"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              `
+            : html`
+                <h1 class="shoe-title">${name}</h1>
+                <p class="shoe-meta">${brand} | ${colorway}</p>
+                <p class="shoe-meta">
+                  Release Date: ${new Date(releaseDate).toLocaleDateString()}
+                </p>
 
-          <div class="designer-collaborator-row">
-            <div class="designer-section">
-              <h2>Designer</h2>
-              <a
-                href="/designer/${designer?.name.toLowerCase()}"
-                class="button"
-              >
-                ${designer?.name}
-              </a>
-            </div>
-            ${designer?.collaborators
-              ? html`
-                  <div class="collaborator-section">
-                    <h2>Collaborators</h2>
+                <div class="designer-collaborator-row">
+                  <div class="designer-section">
+                    <h2>Designer</h2>
                     <a
-                      href="/manufacturer/${designer.collaborators
-                        .join(", ")
-                        .toLowerCase()}"
+                      href="/designer/${designer?.name.toLowerCase()}"
                       class="button"
                     >
-                      ${designer.collaborators.join(", ")}
+                      ${designer?.name}
                     </a>
                   </div>
-                `
-              : ""}
-          </div>
+                  ${designer?.collaborators
+                    ? html`
+                        <div class="collaborator-section">
+                          <h2>Collaborators</h2>
+                          <a
+                            href="/manufacturer/${designer.collaborators
+                              .join(", ")
+                              .toLowerCase()}"
+                            class="button"
+                          >
+                            ${designer.collaborators.join(", ")}
+                          </a>
+                        </div>
+                      `
+                    : ""}
+                </div>
 
-          <div class="shoe-section">
-            <h2>Price</h2>
-            <div class="comparison-row">
-              <div>
-                <span class="label">Retail:</span>
-                <span class="value">$${price.originalPrice}</span>
-              </div>
-              ${price.marketPrice
-                ? html`
+                <div class="shoe-section">
+                  <h2>Price</h2>
+                  <div class="comparison-row">
                     <div>
-                      <span class="label">Market:</span>
-                      <span class="value">$${price.marketPrice}</span>
+                      <span class="label">Retail:</span>
+                      <span class="value">$${price.originalPrice}</span>
                     </div>
-                  `
-                : ""}
-            </div>
-          </div>
+                    ${price.marketPrice
+                      ? html`
+                          <div>
+                            <span class="label">Market:</span>
+                            <span class="value">$${price.marketPrice}</span>
+                          </div>
+                        `
+                      : ""}
+                  </div>
+                </div>
 
-          <div class="shoe-section">
-            <h2>Inventory</h2>
-            <div class="comparison-row">
-              <div>
-                <span class="label">Production:</span>
-                <span class="value">${inventory.productionNumber}</span>
-              </div>
-              <div>
-                <span class="label">Pairs Sold:</span>
-                <span class="value">${inventory.pairsSold}</span>
-              </div>
-            </div>
-            ${inventory.isLimitedEdition
-              ? html`<p><strong>Limited Edition</strong></p>`
-              : ""}
-          </div>
+                <div class="shoe-section">
+                  <h2>Inventory</h2>
+                  <div class="comparison-row">
+                    <div>
+                      <span class="label">Production:</span>
+                      <span class="value">${inventory.productionNumber}</span>
+                    </div>
+                    <div>
+                      <span class="label">Pairs Sold:</span>
+                      <span class="value">${inventory.pairsSold}</span>
+                    </div>
+                  </div>
+                  ${inventory.isLimitedEdition
+                    ? html`<p><strong>Limited Edition</strong></p>`
+                    : ""}
+                </div>
+
+                <button class="button edit" @click=${this.toggleEditMode}>
+                  Edit
+                </button>
+              `}
         </div>
       </div>
     `;
@@ -285,6 +396,33 @@ export class ShoeViewElement extends LitElement {
         flex-direction: column;
         gap: 10px;
       }
+    }
+
+    .shoe-card form label {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+
+    .shoe-card form input {
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid var(--color-accent);
+      border-radius: 5px;
+    }
+
+    .shoe-card form button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: var(--color-link);
+      color: white;
+      cursor: pointer;
+    }
+
+    .shoe-card form button:hover {
+      background-color: var(--color-accent);
     }
   `;
 }

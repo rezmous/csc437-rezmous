@@ -1,4 +1,4 @@
-import{r as h,i as u,x as g,n,d as m,a as f}from"./property-Boso9Xnl.js";var b=Object.defineProperty,s=(d,o,a,c)=>{for(var t=void 0,e=d.length-1,i;e>=0;e--)(i=d[e])&&(t=i(o,a,t)||t);return t&&b(o,a,t),t};const l=class l extends h{constructor(){super(...arguments),this.api="/auth/login",this.redirect="/",this.message=""}render(){return g`
+import{r as h,i as u,x as g,n,d as m,a as f}from"./property-hMr0XSj5.js";var b=Object.defineProperty,s=(d,o,a,c)=>{for(var t=void 0,e=d.length-1,i;e>=0;e--)(i=d[e])&&(t=i(o,a,t)||t);return t&&b(o,a,t),t};const l=class l extends h{constructor(){super(...arguments),this.api="/auth/login",this.redirect="/",this.message=""}render(){return g`
       <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>

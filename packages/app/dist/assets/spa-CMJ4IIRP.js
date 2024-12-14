@@ -1,4 +1,4 @@
-import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ as T}from"./property-Boso9Xnl.js";const y=class y extends p{connectedCallback(){super.connectedCallback(),this.applyDarkMode()}render(){return s`
+import{r as m,i as f,x as s,e as A,n as h,V as N,a as p,f as I,d as T,h as z,s as E,_ as J}from"./property-hMr0XSj5.js";const M=class M extends m{connectedCallback(){super.connectedCallback(),this.applyDarkMode()}render(){return s`
       <header>
         <label class="dark-mode-switch">
           <svg class="icon-darkmode">
@@ -26,11 +26,11 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
           </a>
         </nav>
       </header>
-    `}renderCollectionLink(){const a=this.getUserId();return a?s`
-      <a id="collection-link" href="/collector/${a}">
-        <span id="userid">${a}</span>'s Collection
+    `}renderCollectionLink(){const o=this.getUserId();return o?s`
+      <a id="collection-link" href="/collector/${o}">
+        <span id="userid">${o}</span>'s Collection
       </a>
-    `:s``}handleDarkModeToggle(a){const r=a.target.checked;M.relay(a,"darkmode:toggle",{isDarkMode:r}),this.updateDarkMode(r)}updateDarkMode(a){a?document.body.classList.add("dark-mode"):document.body.classList.remove("dark-mode"),localStorage.setItem("darkMode",String(a))}applyDarkMode(){const a=this.isDarkModeEnabled();this.updateDarkMode(a)}isDarkModeEnabled(){return localStorage.getItem("darkMode")==="true"}handleAuth(a){a.preventDefault(),this.getUserId()&&(localStorage.removeItem("userid"),localStorage.removeItem("auth-token"),M.relay(a,"auth:signout")),window.location.href="/login.html"}getUserId(){return localStorage.getItem("userid")||""}getAuthText(){return this.getUserId()?"Sign Out":"Sign In"}};y.styles=u`
+    `:s``}handleDarkModeToggle(o){const t=o.target.checked;A.relay(o,"darkmode:toggle",{isDarkMode:t}),this.updateDarkMode(t)}updateDarkMode(o){o?document.body.classList.add("dark-mode"):document.body.classList.remove("dark-mode"),localStorage.setItem("darkMode",String(o))}applyDarkMode(){const o=this.isDarkModeEnabled();this.updateDarkMode(o)}isDarkModeEnabled(){return localStorage.getItem("darkMode")==="true"}handleAuth(o){o.preventDefault(),this.getUserId()&&(localStorage.removeItem("userid"),localStorage.removeItem("auth-token"),A.relay(o,"auth:signout")),window.location.href="/login.html"}getUserId(){return localStorage.getItem("userid")||""}getAuthText(){return this.getUserId()?"Sign Out":"Sign In"}};M.styles=f`
     header {
       background-color: var(--color-background-header);
       padding: 20px;
@@ -104,7 +104,7 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
     nav a:hover {
       background-color: var(--color-background-page);
     }
-  `;let x=y;const $=class $ extends p{connectedCallback(){super.connectedCallback(),this.checkAuthStatus()}checkAuthStatus(){localStorage.getItem("auth-token")||(window.location.href="/login.html")}render(){return s`
+  `;let v=M;const S=class S extends m{connectedCallback(){super.connectedCallback(),this.checkAuthStatus()}checkAuthStatus(){localStorage.getItem("auth-token")||(window.location.href="/login.html")}render(){return s`
       <main class="page">
         <section class="manufacturer-cards">
           <div class="card">
@@ -145,7 +145,7 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
           </p>
         </section>
       </main>
-    `}};$.styles=u`
+    `}};S.styles=f`
     :host {
       display: block;
       background-color: var(--color-background-page);
@@ -248,22 +248,22 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
         width: 90%;
       }
     }
-  `;let v=$;/**
+  `;let k=S;/**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */function J(t){return h({...t,state:!0,attribute:!1})}var L=Object.defineProperty,U=Object.getOwnPropertyDescriptor,C=(t,a,e,r)=>{for(var o=r>1?void 0:r?U(a,e):a,n=t.length-1,i;n>=0;n--)(i=t[n])&&(o=(r?i(a,e,o):i(o))||o);return r&&o&&L(a,e,o),o};const D=class D extends z{constructor(){super("sole_collection:model"),this.username=""}get collector(){return this.model.collector}attributeChangedCallback(a,e,r){super.attributeChangedCallback(a,e,r),a==="username"&&e!==r&&r&&(console.log(`Dispatching message to fetch collector data for: ${r}`),this.dispatchMessage(["collector/select",{username:r}]))}render(){if(!this.collector)return s`<p class="loading">Loading collector data...</p>`;const{username:a,shoeModels:e=[],totalValue:r=0,quantity:o=0,manufacturers:n=[]}=this.collector;return s`
+ */function P(r){return h({...r,state:!0,attribute:!1})}var F=Object.defineProperty,L=Object.getOwnPropertyDescriptor,C=(r,o,e,t)=>{for(var a=t>1?void 0:t?L(o,e):o,n=r.length-1,i;n>=0;n--)(i=r[n])&&(a=(t?i(o,e,a):i(a))||a);return t&&a&&F(o,e,a),a};const D=class D extends N{constructor(){super("sole_collection:model"),this.username=""}get collector(){return this.model.collector}attributeChangedCallback(o,e,t){super.attributeChangedCallback(o,e,t),o==="username"&&e!==t&&t&&(console.log(`Dispatching message to fetch collector data for: ${t}`),this.dispatchMessage(["collector/select",{username:t}]))}render(){if(!this.collector)return s`<p class="loading">Loading collector data...</p>`;const{username:o,shoeModels:e=[],totalValue:t=0,quantity:a=0,manufacturers:n=[]}=this.collector;return s`
       <div class="collector-card">
         <div class="collector-content">
-          <h1 class="collector-title">${a}'s Collection</h1>
+          <h1 class="collector-title">${o}'s Collection</h1>
           <div class="comparison-row">
             <div>
               <span class="label">Total Value:</span>
-              <span class="value">$${r.toLocaleString()}</span>
+              <span class="value">$${t.toLocaleString()}</span>
             </div>
             <div>
               <span class="label">Total Pairs:</span>
-              <span class="value">${o}</span>
+              <span class="value">${a}</span>
             </div>
           </div>
           <div class="manufacturer-section">
@@ -290,7 +290,7 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
           </div>
         </div>
       </div>
-    `}};D.styles=u`
+    `}};D.styles=f`
     :host {
       display: flex;
       justify-content: center;
@@ -413,72 +413,127 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
         grid-template-columns: 1fr;
       }
     }
-  `;let g=D;C([h({attribute:"username",reflect:!0})],g.prototype,"username",2);C([J()],g.prototype,"collector",1);function F(t,a,e){switch(t[0]){case"collector/select":B(t[1],e).then(o=>a(n=>({...n,collector:o})));break;case"shoe/select":E(t[1],e).then(o=>a(n=>({...n,shoe:o})));break;case"manufacturer/select":O(t[1],e).then(o=>a(n=>({...n,manufacturer:o})));break;case"designer/select":K(t[1],e).then(o=>a(n=>({...n,designer:o})));break;default:const r=t[0];throw new Error(`Unhandled message: ${r}`)}}function B({username:t},a){return fetch(`/api/collector/${t}`,{headers:m.headers(a)}).then(e=>e.ok?e.json():void 0).then(e=>(console.log("Fetched collector:",e),e))}function E({sku:t},a){return fetch(`/api/shoes/${t}`,{headers:m.headers(a)}).then(e=>e.ok?e.json():void 0).then(e=>(console.log("Fetched shoe:",e),e))}function O({name:t},a){return fetch(`/api/manufacturer/${t}`,{headers:m.headers(a)}).then(e=>e.ok?e.json():void 0).then(e=>(console.log("Fetched manufacturer:",e),e))}function K({name:t},a){return fetch(`/api/designer/${t}`,{headers:m.headers(a)}).then(e=>e.ok?e.json():void 0).then(e=>(console.log("Fetched designer:",e),e))}const q={};var R=Object.defineProperty,_=(t,a,e,r)=>{for(var o=void 0,n=t.length-1,i;n>=0;n--)(i=t[n])&&(o=i(a,e,o)||o);return o&&R(a,e,o),o};const A=class A extends p{connectedCallback(){super.connectedCallback(),this.sku&&this.fetchShoe(this.sku)}attributeChangedCallback(a,e,r){super.attributeChangedCallback(a,e,r),a==="sku"&&e!==r&&r&&this.fetchShoe(r)}async fetchShoe(a){try{const e=await fetch(`/api/shoes/${a}`,{headers:{"Content-Type":"application/json"}});if(!e.ok)throw new Error(`Failed to fetch shoe data: ${e.status}`);const r=await e.json();console.log("Fetched shoe data:",r),this.shoe=r}catch(e){console.error("Error fetching shoe data:",e),this.shoe=void 0}}render(){if(!this.shoe)return s`<p class="loading">Loading shoe data...</p>`;const{name:a,brand:e,colorway:r,releaseDate:o,featuredImage:n,price:i,inventory:b,designer:c}=this.shoe;return s`
+  `;let b=D;C([h({attribute:"username",reflect:!0})],b.prototype,"username",2);C([P()],b.prototype,"collector",1);function U(r,o,e){switch(r[0]){case"collector/select":B(r[1],e).then(a=>o(n=>({...n,collector:a})));break;case"shoe/select":q(r[1],e).then(a=>o(n=>({...n,shoe:a})));break;case"manufacturer/select":K(r[1],e).then(a=>o(n=>({...n,manufacturer:a})));break;case"designer/select":R(r[1],e).then(a=>o(n=>({...n,designer:a})));break;case"shoe/add":console.log("Adding shoe with payload:",r[1].shoe),W(r[1],e).then(()=>{console.log("Shoe added successfully.");const{onSuccess:a}=r[1];a&&a()}).catch(a=>{console.error("Error adding shoe:",a);const{onFailure:n}=r[1];n&&n(a)});break;case"shoes/update":console.log("Processing shoe/update message:",r[1]),O(r[1],e).then(a=>{console.log("Shoe updated on server:",a),o(i=>({...i,shoe:a}));const{onSuccess:n}=r[1];n&&n()}).catch(a=>{console.error("Error in shoe/update:",a);const{onFailure:n}=r[1];n&&n(a)});break;default:const t=r[0];throw new Error(`Unhandled message: ${t}`)}}async function O(r,o){const e=await fetch(`/api/shoes/${r.sku}`,{method:"PUT",headers:{"Content-Type":"application/json",...p.headers(o)},body:JSON.stringify(r.shoe)});if(!e.ok)throw new Error(`Failed to update shoe: ${e.status}`);return e.json()}function B({username:r},o){return fetch(`/api/collector/${r}`,{headers:p.headers(o)}).then(e=>e.ok?e.json():void 0).then(e=>(console.log("Fetched collector:",e),e))}function q({sku:r},o){return fetch(`/api/shoes/${r}`,{headers:p.headers(o)}).then(e=>e.ok?e.json():void 0).then(e=>(console.log("Fetched shoe:",e),e))}function K({name:r},o){return fetch(`/api/manufacturer/${r}`,{headers:p.headers(o)}).then(e=>e.ok?e.json():void 0).then(e=>(console.log("Fetched manufacturer:",e),e))}function R({name:r},o){return fetch(`/api/designer/${r}`,{headers:p.headers(o)}).then(e=>e.ok?e.json():void 0).then(e=>(console.log("Fetched designer:",e),e))}function W(r,o){return fetch("/api/shoes",{method:"POST",headers:{"Content-Type":"application/json",...p.headers(o)},body:JSON.stringify(r.shoe)}).then(e=>{if(e.status!==201)throw new Error("Failed to add shoe")})}const Y={};var G=Object.defineProperty,w=(r,o,e,t)=>{for(var a=void 0,n=r.length-1,i;n>=0;n--)(i=r[n])&&(a=i(o,e,a)||a);return a&&G(o,e,a),a};const x=class x extends m{constructor(){super(...arguments),this.editMode=!1}toggleEditMode(){this.editMode=!this.editMode}connectedCallback(){super.connectedCallback(),this.sku&&this.fetchShoe(this.sku)}attributeChangedCallback(o,e,t){super.attributeChangedCallback(o,e,t),o==="sku"&&e!==t&&t&&this.fetchShoe(t)}async fetchShoe(o){try{const e=await fetch(`/api/shoes/${o}`,{headers:{"Content-Type":"application/json"}});if(!e.ok)throw new Error(`Failed to fetch shoe data: ${e.status}`);const t=await e.json();console.log("Fetched shoe data:",t),this.shoe=t}catch(e){console.error("Error fetching shoe data:",e),this.shoe=void 0}}async handleEditSubmit(o){var a,n,i,l;o.preventDefault();const e=o.target,t={price:{originalPrice:parseFloat((a=e.elements.namedItem("originalPrice"))==null?void 0:a.value),marketPrice:parseFloat((n=e.elements.namedItem("marketPrice"))==null?void 0:n.value)},inventory:{productionNumber:parseInt((i=e.elements.namedItem("productionNumber"))==null?void 0:i.value),pairsSold:parseInt((l=e.elements.namedItem("pairsSold"))==null?void 0:l.value)}};try{const c=await fetch(`/api/shoes/${this.sku}`,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({...this.shoe,...t})});if(!c.ok)throw new Error(`Failed to update shoe: ${c.status}`);this.shoe=await c.json(),this.editMode=!1}catch(c){console.error("Error updating shoe:",c)}}render(){if(!this.shoe)return s`<p class="loading">Loading shoe data...</p>`;const{name:o,brand:e,colorway:t,releaseDate:a,featuredImage:n,price:i,inventory:l,designer:c}=this.shoe;return s`
       <div class="shoe-card">
-        <img src="${n}" alt="${a}" class="shoe-image" />
+        <img src="${n}" alt="${o}" class="shoe-image" />
         <div class="shoe-content">
-          <h1 class="shoe-title">${a}</h1>
-          <p class="shoe-meta">${e} | ${r}</p>
-          <p class="shoe-meta">
-            Release Date: ${new Date(o).toLocaleDateString()}
-          </p>
+          ${this.editMode?s`
+                <form @submit=${this.handleEditSubmit}>
+                  <h2>Edit Shoe Details</h2>
+                  <label>
+                    Original Price:
+                    <input
+                      type="number"
+                      name="originalPrice"
+                      value="${i.originalPrice}"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Market Price:
+                    <input
+                      type="number"
+                      name="marketPrice"
+                      value="${i.marketPrice||""}"
+                    />
+                  </label>
+                  <label>
+                    Production Number:
+                    <input
+                      type="number"
+                      name="productionNumber"
+                      value="${l.productionNumber}"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Pairs Sold:
+                    <input
+                      type="number"
+                      name="pairsSold"
+                      value="${l.pairsSold}"
+                      required
+                    />
+                  </label>
+                  <div class="button-group">
+                    <button type="submit" class="button save">Save</button>
+                    <button
+                      type="button"
+                      @click=${this.toggleEditMode}
+                      class="button cancel"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              `:s`
+                <h1 class="shoe-title">${o}</h1>
+                <p class="shoe-meta">${e} | ${t}</p>
+                <p class="shoe-meta">
+                  Release Date: ${new Date(a).toLocaleDateString()}
+                </p>
 
-          <div class="designer-collaborator-row">
-            <div class="designer-section">
-              <h2>Designer</h2>
-              <a
-                href="/designer/${c==null?void 0:c.name.toLowerCase()}"
-                class="button"
-              >
-                ${c==null?void 0:c.name}
-              </a>
-            </div>
-            ${c!=null&&c.collaborators?s`
-                  <div class="collaborator-section">
-                    <h2>Collaborators</h2>
+                <div class="designer-collaborator-row">
+                  <div class="designer-section">
+                    <h2>Designer</h2>
                     <a
-                      href="/manufacturer/${c.collaborators.join(", ").toLowerCase()}"
+                      href="/designer/${c==null?void 0:c.name.toLowerCase()}"
                       class="button"
                     >
-                      ${c.collaborators.join(", ")}
+                      ${c==null?void 0:c.name}
                     </a>
                   </div>
-                `:""}
-          </div>
+                  ${c!=null&&c.collaborators?s`
+                        <div class="collaborator-section">
+                          <h2>Collaborators</h2>
+                          <a
+                            href="/manufacturer/${c.collaborators.join(", ").toLowerCase()}"
+                            class="button"
+                          >
+                            ${c.collaborators.join(", ")}
+                          </a>
+                        </div>
+                      `:""}
+                </div>
 
-          <div class="shoe-section">
-            <h2>Price</h2>
-            <div class="comparison-row">
-              <div>
-                <span class="label">Retail:</span>
-                <span class="value">$${i.originalPrice}</span>
-              </div>
-              ${i.marketPrice?s`
+                <div class="shoe-section">
+                  <h2>Price</h2>
+                  <div class="comparison-row">
                     <div>
-                      <span class="label">Market:</span>
-                      <span class="value">$${i.marketPrice}</span>
+                      <span class="label">Retail:</span>
+                      <span class="value">$${i.originalPrice}</span>
                     </div>
-                  `:""}
-            </div>
-          </div>
+                    ${i.marketPrice?s`
+                          <div>
+                            <span class="label">Market:</span>
+                            <span class="value">$${i.marketPrice}</span>
+                          </div>
+                        `:""}
+                  </div>
+                </div>
 
-          <div class="shoe-section">
-            <h2>Inventory</h2>
-            <div class="comparison-row">
-              <div>
-                <span class="label">Production:</span>
-                <span class="value">${b.productionNumber}</span>
-              </div>
-              <div>
-                <span class="label">Pairs Sold:</span>
-                <span class="value">${b.pairsSold}</span>
-              </div>
-            </div>
-            ${b.isLimitedEdition?s`<p><strong>Limited Edition</strong></p>`:""}
-          </div>
+                <div class="shoe-section">
+                  <h2>Inventory</h2>
+                  <div class="comparison-row">
+                    <div>
+                      <span class="label">Production:</span>
+                      <span class="value">${l.productionNumber}</span>
+                    </div>
+                    <div>
+                      <span class="label">Pairs Sold:</span>
+                      <span class="value">${l.pairsSold}</span>
+                    </div>
+                  </div>
+                  ${l.isLimitedEdition?s`<p><strong>Limited Edition</strong></p>`:""}
+                </div>
+
+                <button class="button edit" @click=${this.toggleEditMode}>
+                  Edit
+                </button>
+              `}
         </div>
       </div>
-    `}};A.styles=u`
+    `}};x.uses={"mu-form":I.Element},x.styles=f`
     :host {
       display: block;
       font-family: "Montserrat", sans-serif;
@@ -630,20 +685,47 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
         gap: 10px;
       }
     }
-  `;let f=A;_([h()],f.prototype,"sku");_([h({state:!0})],f.prototype,"shoe");var W=Object.defineProperty,S=(t,a,e,r)=>{for(var o=void 0,n=t.length-1,i;n>=0;n--)(i=t[n])&&(o=i(a,e,o)||o);return o&&W(a,e,o),o},l;const k=(l=class extends p{connectedCallback(){super.connectedCallback(),this.updateManufacturerData()}attributeChangedCallback(a,e,r){super.attributeChangedCallback(a,e,r),a==="manufacturerName"&&e!==r&&r&&this.updateManufacturerData()}updateManufacturerData(){this.manufacturerName?this.manufacturerData=l.manufacturers[this.manufacturerName]:this.manufacturerData=void 0}render(){if(!this.manufacturerData)return s`<p class="loading">
+
+    .shoe-card form label {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+
+    .shoe-card form input {
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid var(--color-accent);
+      border-radius: 5px;
+    }
+
+    .shoe-card form button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: var(--color-link);
+      color: white;
+      cursor: pointer;
+    }
+
+    .shoe-card form button:hover {
+      background-color: var(--color-accent);
+    }
+  `;let g=x;w([h()],g.prototype,"sku");w([h({state:!0})],g.prototype,"shoe");w([P()],g.prototype,"editMode");var H=Object.defineProperty,j=(r,o,e,t)=>{for(var a=void 0,n=r.length-1,i;n>=0;n--)(i=r[n])&&(a=i(o,e,a)||a);return a&&H(o,e,a),a},d;const y=(d=class extends m{connectedCallback(){super.connectedCallback(),this.updateManufacturerData()}attributeChangedCallback(o,e,t){super.attributeChangedCallback(o,e,t),o==="manufacturerName"&&e!==t&&t&&this.updateManufacturerData()}updateManufacturerData(){this.manufacturerName?this.manufacturerData=d.manufacturers[this.manufacturerName]:this.manufacturerData=void 0}render(){if(!this.manufacturerData)return s`<p class="loading">
         No manufacturer selected or data not available.
-      </p>`;const{name:a,logoUrl:e,description:r,designers:o}=this.manufacturerData;return s`
+      </p>`;const{name:o,logoUrl:e,description:t,designers:a}=this.manufacturerData;return s`
       <div class="manufacturer-card">
         <div class="manufacturer-header">
-          <h1>${a}</h1>
-          <img class="manufacturer-logo" src="${e}" alt="${a} Logo" />
+          <h1>${o}</h1>
+          <img class="manufacturer-logo" src="${e}" alt="${o} Logo" />
 
-          <p class="description">${r}</p>
+          <p class="description">${t}</p>
         </div>
         <section class="designer-section">
           <h2>Designers</h2>
           <ul>
-            ${o.map(n=>s`<li>
+            ${a.map(n=>s`<li>
                   <a href="${n.link}">
                     <span>${n.name}</span>
                   </a>
@@ -651,7 +733,7 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
           </ul>
         </section>
       </div>
-    `}},l.manufacturers={nike:{name:"Nike",logoUrl:"https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg",description:"Nike, Inc. is an American multinational corporation engaged in the design, development, manufacturing, and marketing of footwear, apparel, equipment, and accessories. Known for its iconic swoosh logo and tagline 'Just Do It.'",designers:[{name:"Tinker Hatfield",link:"/designer/tinker"},{name:"Travis Scott",link:"/designer/travis"},{name:"Virgil Abloh",link:"/designer/abloh"}]},jordan:{name:"Jordan Brand",logoUrl:"https://upload.wikimedia.org/wikipedia/en/3/37/Jumpman_logo.svg",description:"Jordan Brand, a subsidiary of Nike, is an American sportswear brand inspired by NBA Hall of Famer Michael Jordan. It is known for its signature Air Jordan sneakers and its influence on basketball culture and fashion.",designers:[{name:"Tinker Hatfield",link:"/designer/tinker"},{name:"Travis Scott",link:"/designer/travis"},{name:"Virgil Abloh",link:"/designer/abloh"}]},adidas:{name:"Adidas",logoUrl:"https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg",description:"Adidas is a German multinational corporation that designs and manufactures shoes, clothing, and accessories. Known for its iconic three stripes, Adidas is a leader in the global sportswear industry, creating innovative designs and partnering with world-renowned designers and athletes.",designers:[{name:"Daniel Arsham",link:"/designer/arsham"},{name:"Jerry Lorenzo",link:"/designer/lorenzo"},{name:"Ye",link:"/designer/ye"}]}},l.styles=u`
+    `}},d.manufacturers={nike:{name:"Nike",logoUrl:"https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg",description:"Nike, Inc. is an American multinational corporation engaged in the design, development, manufacturing, and marketing of footwear, apparel, equipment, and accessories. Known for its iconic swoosh logo and tagline 'Just Do It.'",designers:[{name:"Tinker Hatfield",link:"/designer/tinker"},{name:"Travis Scott",link:"/designer/travis"},{name:"Virgil Abloh",link:"/designer/abloh"}]},jordan:{name:"Jordan Brand",logoUrl:"https://upload.wikimedia.org/wikipedia/en/3/37/Jumpman_logo.svg",description:"Jordan Brand, a subsidiary of Nike, is an American sportswear brand inspired by NBA Hall of Famer Michael Jordan. It is known for its signature Air Jordan sneakers and its influence on basketball culture and fashion.",designers:[{name:"Tinker Hatfield",link:"/designer/tinker"},{name:"Travis Scott",link:"/designer/travis"},{name:"Virgil Abloh",link:"/designer/abloh"}]},adidas:{name:"Adidas",logoUrl:"https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg",description:"Adidas is a German multinational corporation that designs and manufactures shoes, clothing, and accessories. Known for its iconic three stripes, Adidas is a leader in the global sportswear industry, creating innovative designs and partnering with world-renowned designers and athletes.",designers:[{name:"Daniel Arsham",link:"/designer/arsham"},{name:"Jerry Lorenzo",link:"/designer/lorenzo"},{name:"Ye",link:"/designer/ye"}]}},d.styles=f`
     :host {
       display: flex;
       align-items: flex-start;
@@ -770,23 +852,23 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
         width: 90%;
       }
     }
-  `,l);S([h()],k.prototype,"manufacturerName");S([h({state:!0})],k.prototype,"manufacturerData");let Y=k;var G=Object.defineProperty,j=(t,a,e,r)=>{for(var o=void 0,n=t.length-1,i;n>=0;n--)(i=t[n])&&(o=i(a,e,o)||o);return o&&G(a,e,o),o},d;const w=(d=class extends p{connectedCallback(){super.connectedCallback(),this.updateDesignerData()}attributeChangedCallback(a,e,r){super.attributeChangedCallback(a,e,r),a==="designerName"&&e!==r&&r&&this.updateDesignerData()}updateDesignerData(){this.designerName?this.designerData=d.designers[this.designerName]:this.designerData=void 0}render(){if(!this.designerData)return s`<p class="loading">
+  `,d);j([h()],y.prototype,"manufacturerName");j([h({state:!0})],y.prototype,"manufacturerData");let X=y;var Q=Object.defineProperty,_=(r,o,e,t)=>{for(var a=void 0,n=r.length-1,i;n>=0;n--)(i=r[n])&&(a=i(o,e,a)||a);return a&&Q(o,e,a),a},u;const $=(u=class extends m{connectedCallback(){super.connectedCallback(),this.updateDesignerData()}attributeChangedCallback(o,e,t){super.attributeChangedCallback(o,e,t),o==="designerName"&&e!==t&&t&&this.updateDesignerData()}updateDesignerData(){this.designerName?this.designerData=u.designers[this.designerName]:this.designerData=void 0}render(){if(!this.designerData)return s`<p class="loading">
         No designer selected or data not available.
-      </p>`;const{name:a,profileImageUrl:e,bio:r,manufacturers:o,shoeModels:n}=this.designerData;return s`
+      </p>`;const{name:o,profileImageUrl:e,bio:t,manufacturers:a,shoeModels:n}=this.designerData;return s`
       <div class="designer-card">
         <div class="designer-header">
-          <h1>${a}</h1>
+          <h1>${o}</h1>
           <img
             class="designer-profile"
             src="${e}"
-            alt="${a} Profile Image"
+            alt="${o} Profile Image"
           />
-          <p class="bio">${r}</p>
+          <p class="bio">${t}</p>
         </div>
         <section class=" section manufacturer-section">
           <h2>Manufacturers</h2>
           <ul>
-            ${o.map(i=>s`<li>
+            ${a.map(i=>s`<li>
                   <a href="${i.link}">
                     <span>${i.name}</span>
                   </a>
@@ -806,7 +888,7 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
           </ul>
         </section>
       </div>
-    `}},d.designers={abloh:{name:"Virgil Abloh",profileImageUrl:"https://res.cloudinary.com/dmubfrefi/image/private/s--4m5Pijb1--/c_crop,h_1079,w_1079,x_0,y_201/c_scale,w_3840/f_auto/q_auto/v1/dee-about-cms-prod-medias/e8e3218f-12bf-4861-bd20-e435cd2c814e/virgil-abloh-nike-the10-12-73201.jpg?_a=BAAAV6Bs",bio:"Virgil Abloh was a visionary designer and artist, known for founding the luxury streetwear brand Off-White and serving as the Artistic Director of Louis Vuitton's menswear. His work with Nike and Jordan Brand, including 'The Ten' collection, redefined modern sneaker culture.",manufacturers:[{name:"Nike",link:"/manufacturer/nike"},{name:"Jordan Brand",link:"/manufacturer/jordan"}],shoeModels:[{name:"Air Jordan 1",link:"/shoes/555088-610"},{name:"Nike Presto",link:"/shoes/AQ0818-100"}]},arsham:{name:"Daniel Arsham",profileImageUrl:"https://assets.mocomuseum.com/images_prod/transforms/artist/_2900x1631_crop_center-center_none/17080/Ams-Museum-Daniel-Arsham-Eroded-Patches.jpg",bio:"Daniel Arsham is an artist and designer known for his sculptural works and futuristic collaborations with Adidas and other major brands.",manufacturers:[{name:"Adidas",link:"/manufacturer/adidas"}],shoeModels:[{name:"Adidas Futurecraft 4D",link:"/shoes/F35155"}]},lorenzo:{name:"Jerry Lorenzo",profileImageUrl:"https://cdn.shopify.com/s/files/1/0408/9909/files/Jerry_Lorenzo_Editorial_-_Feature_-_April_13_2022_-_2.png?v=1649892505",bio:"Jerry Lorenzo is the founder of Fear of God and known for his high-fashion streetwear collaborations with Nike and other brands.",manufacturers:[{name:"Adidas",link:"/manufacturer/adidas"}],shoeModels:[{name:"Nike Air Fear of God Moc",link:"/shoes/AR4237-001"}]},tinker:{name:"Tinker Hatfield",profileImageUrl:"https://image.tmdb.org/t/p/original/wtASoljXtKda2qS1mu48X5j2cnf.jpg",bio:"Tinker Hatfield is a legendary designer known for his groundbreaking work on the Air Jordan series and other iconic Nike products.",manufacturers:[{name:"Nike",link:"/manufacturer/nike"}],shoeModels:[{name:"Air Jordan 1",link:"/shoes/555088-610"},{name:"Air Jordan 5",link:"/shoes/DB0732-001"}]},travis:{name:"Travis Scott",profileImageUrl:"https://www.billboard.com/wp-content/uploads/2021/11/travis-scott-astroworld-2021-2-billboard-1548-1636217991.png",bio:"Travis Scott is a musician and designer collaborating with Nike and Jordan Brand to create unique and culturally impactful designs.",manufacturers:[{name:"Nike",link:"/manufacturer/nike"},{name:"Jordan Brand",link:"/manufacturer/jordan"}],shoeModels:[{name:"Air Jordan 1",link:"/shoes/555088-610"}]},ye:{name:"Ye (Kanye West)",profileImageUrl:"https://gray-wtok-prod.gtv-cdn.com/resizer/v2/SAXZJAIOSRF4NEEQHDUT4KFIRU.png?auth=6ae09f4cc6f2ba0b576c9f223bc2c49aea8d6e7b735b106ffb75a990c0939d87&width=800&height=450&smart=true",bio:"Ye, formerly known as Kanye West, revolutionized the sneaker industry with his Yeezy brand and collaborations with Adidas.",manufacturers:[{name:"Adidas",link:"/manufacturer/adidas"}],shoeModels:[{name:"Yeezy Boost 350 V2",link:"/shoes/CP9654"}]}},d.styles=u`
+    `}},u.designers={abloh:{name:"Virgil Abloh",profileImageUrl:"https://res.cloudinary.com/dmubfrefi/image/private/s--4m5Pijb1--/c_crop,h_1079,w_1079,x_0,y_201/c_scale,w_3840/f_auto/q_auto/v1/dee-about-cms-prod-medias/e8e3218f-12bf-4861-bd20-e435cd2c814e/virgil-abloh-nike-the10-12-73201.jpg?_a=BAAAV6Bs",bio:"Virgil Abloh was a visionary designer and artist, known for founding the luxury streetwear brand Off-White and serving as the Artistic Director of Louis Vuitton's menswear. His work with Nike and Jordan Brand, including 'The Ten' collection, redefined modern sneaker culture.",manufacturers:[{name:"Nike",link:"/manufacturer/nike"},{name:"Jordan Brand",link:"/manufacturer/jordan"}],shoeModels:[{name:"Air Jordan 1",link:"/shoes/555088-610"},{name:"Nike Presto",link:"/shoes/AQ0818-100"}]},arsham:{name:"Daniel Arsham",profileImageUrl:"https://assets.mocomuseum.com/images_prod/transforms/artist/_2900x1631_crop_center-center_none/17080/Ams-Museum-Daniel-Arsham-Eroded-Patches.jpg",bio:"Daniel Arsham is an artist and designer known for his sculptural works and futuristic collaborations with Adidas and other major brands.",manufacturers:[{name:"Adidas",link:"/manufacturer/adidas"}],shoeModels:[{name:"Adidas Futurecraft 4D",link:"/shoes/F35155"}]},lorenzo:{name:"Jerry Lorenzo",profileImageUrl:"https://cdn.shopify.com/s/files/1/0408/9909/files/Jerry_Lorenzo_Editorial_-_Feature_-_April_13_2022_-_2.png?v=1649892505",bio:"Jerry Lorenzo is the founder of Fear of God and known for his high-fashion streetwear collaborations with Nike and other brands.",manufacturers:[{name:"Adidas",link:"/manufacturer/adidas"}],shoeModels:[{name:"Nike Air Fear of God Moc",link:"/shoes/AR4237-001"}]},tinker:{name:"Tinker Hatfield",profileImageUrl:"https://image.tmdb.org/t/p/original/wtASoljXtKda2qS1mu48X5j2cnf.jpg",bio:"Tinker Hatfield is a legendary designer known for his groundbreaking work on the Air Jordan series and other iconic Nike products.",manufacturers:[{name:"Nike",link:"/manufacturer/nike"}],shoeModels:[{name:"Air Jordan 1",link:"/shoes/555088-610"},{name:"Air Jordan 5",link:"/shoes/DB0732-001"}]},travis:{name:"Travis Scott",profileImageUrl:"https://www.billboard.com/wp-content/uploads/2021/11/travis-scott-astroworld-2021-2-billboard-1548-1636217991.png",bio:"Travis Scott is a musician and designer collaborating with Nike and Jordan Brand to create unique and culturally impactful designs.",manufacturers:[{name:"Nike",link:"/manufacturer/nike"},{name:"Jordan Brand",link:"/manufacturer/jordan"}],shoeModels:[{name:"Air Jordan 1",link:"/shoes/555088-610"}]},ye:{name:"Ye (Kanye West)",profileImageUrl:"https://gray-wtok-prod.gtv-cdn.com/resizer/v2/SAXZJAIOSRF4NEEQHDUT4KFIRU.png?auth=6ae09f4cc6f2ba0b576c9f223bc2c49aea8d6e7b735b106ffb75a990c0939d87&width=800&height=450&smart=true",bio:"Ye, formerly known as Kanye West, revolutionized the sneaker industry with his Yeezy brand and collaborations with Adidas.",manufacturers:[{name:"Adidas",link:"/manufacturer/adidas"}],shoeModels:[{name:"Yeezy Boost 350 V2",link:"/shoes/CP9654"}]}},u.styles=f`
     :host {
       display: flex;
       align-items: flex-start;
@@ -915,12 +997,12 @@ import{r as p,i as u,x as s,e as M,n as h,V as z,a as m,d as P,h as I,s as N,_ a
         width: 90%;
       }
     }
-  `,d);j([h()],w.prototype,"designerName");j([h({state:!0})],w.prototype,"designerData");let H=w;class X extends p{render(){return s` <home-view></home-view> `}connectedCallback(){super.connectedCallback()}}const Q=[{path:"/shoes/:sku",view:t=>s`
-      <shoe-view sku=${t.sku}></shoe-view>
-    `},{path:"/collector/:username",view:t=>s`
-      <collector-view username=${t.username}></collector-view>
-    `},{path:"/manufacturer/:name",view:t=>s`
-      <manufacturer-view manufacturerName=${t.name}></manufacturer-view>
-    `},{path:"/designer/:name",view:t=>s`
-      <designer-view designerName=${t.name}></designer-view>
-    `},{path:"/",redirect:"/app"},{path:"/app",view:()=>s` <home-view></home-view> `}];P({"mu-auth":m.Provider,"mu-history":I.Provider,"mu-store":class extends N.Provider{constructor(){super(F,q,"sole_collection:auth")}},"mu-switch":class extends T.Element{constructor(){super(Q,"sole_collection:history","sole_collection:auth")}},"solecollection-app":X,"solecollection-header":x,"home-view":v,"collector-view":g,"designer-view":H,"manufacturer-view":Y,"shoe-view":f});
+  `,u);_([h()],$.prototype,"designerName");_([h({state:!0})],$.prototype,"designerData");let Z=$;class V extends m{render(){return s` <home-view></home-view> `}connectedCallback(){super.connectedCallback()}}const ee=[{path:"/shoes/:sku",view:r=>s`
+      <shoe-view sku=${r.sku}></shoe-view>
+    `},{path:"/collector/:username",view:r=>s`
+      <collector-view username=${r.username}></collector-view>
+    `},{path:"/manufacturer/:name",view:r=>s`
+      <manufacturer-view manufacturerName=${r.name}></manufacturer-view>
+    `},{path:"/designer/:name",view:r=>s`
+      <designer-view designerName=${r.name}></designer-view>
+    `},{path:"/",redirect:"/app"},{path:"/app",view:()=>s` <home-view></home-view> `}];T({"mu-auth":p.Provider,"mu-history":z.Provider,"mu-store":class extends E.Provider{constructor(){super(U,Y,"sole_collection:auth")}},"mu-switch":class extends J.Element{constructor(){super(ee,"sole_collection:history","sole_collection:auth")}},"solecollection-app":V,"solecollection-header":v,"home-view":k,"collector-view":b,"designer-view":Z,"manufacturer-view":X,"shoe-view":g});
