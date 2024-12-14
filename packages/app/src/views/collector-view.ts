@@ -18,7 +18,6 @@ export class CollectorViewElement extends View<Model, Msg> {
     super("sole_collection:model");
   }
 
-  // React to username changes
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     super.attributeChangedCallback(name, oldValue, newValue);
     if (name === "username" && oldValue !== newValue && newValue) {
